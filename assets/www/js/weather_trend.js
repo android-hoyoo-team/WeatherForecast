@@ -1,21 +1,20 @@
-FusionCharts.ready(function(){
-				var height = 300;
-				var width = 500;
+ï»¿FusionCharts.ready(function(){
+				var width = screen.availWidth ;
 				var lineChart = new FusionCharts({
 					"type":"msline",
 					"renderAt":"chartContainer",
-					"width": width,
-					"height": height,
+					"width": "100%",
+					"height": "300",
 					"dataFormat": "json",
 					"dataSource":{
 					   "chart": {
-						  "caption": "Î´À´ÆßÌìÎÂ¶È±ä»¯Ç÷ÊÆ(¡æ)",
-						  "captionFontSize": "20",
+						  "caption": "æœªæ¥ä¸ƒå¤©æ¸©åº¦å˜åŒ–è¶‹åŠ¿(â„ƒ)",
+						  "captionFontSize": "14",
 						  "bgAlpha":"100",
 						  "showValues":"1",
 						  "paletteColors": "#F6E639,#92D4F7",
 						  "bgcolor": "#5c8aa0",
-						  //ÊÇ·ñÏÔÊ¾yÖá¿Ì¶È
+						  //æ˜¯å¦æ˜¾ç¤ºyè½´åˆ»åº¦
 						  "showYAxisValues":"0",
 						  "showCanvasBorder": "0",
 						  "usePlotGradientColor": "0",
@@ -34,13 +33,14 @@ FusionCharts.ready(function(){
 						  "divLineColor":"#5c8aa0",
 						  "vdivLineColor":"#B2C7CF",
 						  "showAlternateVGridColor":"0",
-						  //»­²¼±³¾°
+						  //ç”»å¸ƒèƒŒæ™¯
 						  "canvasBgColor":"#5c8aa0",
 						  "showLegend":"0",
 						  "baseFontColor":"#FFFFFF",
 						  "anchorRadius":"5",
 						  "showToolTip":"1",
-						  "numDivLines":"1"
+						  "numDivLines":"1",
+						  "toolTipColor":"#000000"
 					   },
 					   "categories": [
 						  {
@@ -48,25 +48,25 @@ FusionCharts.ready(function(){
 							 "category": [
 							 {},
 								{
-								   "label": "ÖÜÈÕ",
+								   "label": "å‘¨æ—¥",
 								},
 								{
-								   "label": "ÖÜÒ»"
+								   "label": "å‘¨ä¸€"
 								},
 								{
-								   "label": "ÖÜ¶ş"
+								   "label": "å‘¨äºŒ"
 								},
 								{
-								   "label": "ÖÜÈı"
+								   "label": "å‘¨ä¸‰"
 								},
 								{
-								   "label": "ÖÜËÄ"
+								   "label": "å‘¨å››"
 								},
 								{
-								   "label": "ÖÜÎå"
+								   "label": "å‘¨äº”"
 								},
 								{
-								   "label": "ÖÜÁù"
+								   "label": "å‘¨å…­"
 								},{}
 								
 							 ]
@@ -74,7 +74,7 @@ FusionCharts.ready(function(){
 					   ],
 					   "dataset": [
 						  {
-							 "seriesname": "Bakersfield Central",
+							 //"seriesname": "Bakersfield Central",
 							 "color":"#F6E639",
 							 "valuePosition":"above",
 						     "anchorBgColor":"#F6E639",
@@ -87,7 +87,7 @@ FusionCharts.ready(function(){
 								   "value": ""
 								},
 								{
-								   "value": "12"
+								   "value": "12",
 								},
 								{
 								   "value": "16"
@@ -109,7 +109,7 @@ FusionCharts.ready(function(){
 							 ]
 						  },
 						  {
-							 "seriesname": "Los Angeles Topanga",
+							 //"seriesname": "Los Angeles Topanga",
 							 "color":"#92D4F7",
 							 "valuePosition":"BELOW",
 							 "anchorBgColor":"#92D4F7",
