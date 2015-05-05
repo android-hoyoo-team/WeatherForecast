@@ -1,33 +1,162 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-           hello world 0002
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-    </body>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <title>Acceleration Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script type="text/javascript" charset="utf-8" src="fusioncharts.js"></script>
+	<script type="text/javascript" charset="utf-8" src="fusioncharts.theme.fint.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    FusionCharts.ready(function(){
+    
+    var width = 300;
+    var height = 300;
+    var revenueChart = new FusionCharts({
+        "type": "line",
+        "renderAt":"chartContainer",
+        "width": width,
+        "height": height,
+        "dataFormat": "json",
+        "dataSource":  {
+   "chart": {
+      "caption": "最新整点实况气温:12.6℃,最高:13.6℃  最低:6℃",
+      "subCaption": "Last week",
+      //"xAxisName": "Day",
+      //"yAxisName": "No. of Visitors",
+      "lineThickness": "2",
+      "paletteColors": "#FF0000",
+      "baseFontColor": "#333333",
+      "baseFont": "Helvetica Neue,Arial",
+      "animation":"1",
+      "captionFontSize": "14",
+      "subcaptionFontSize": "14",
+      "subcaptionFontBold": "0",
+      "showBorder": "0",
+      "bgColor": "#ffffff",
+      "showShadow": "0",
+      "canvasBgColor": "#ffffff",
+      "canvasBorderAlpha": "0",
+      "divlineAlpha": "100",
+      "divlineColor": "#999999",
+      "divlineThickness": "1",
+      "divLineIsDashed": "1",
+      "divLineDashLen": "1",
+      "divLineGapLen": "1",
+      "showXAxisLine": "1",
+      "showYAxisLine":"1",
+      "labelDisplay":"NONE",
+      "xAxisLineThickness": "1",
+      "rotateLabels":"0",
+      "xAxisLineColor": "#999999",
+      "showAlternateHGridColor": "0"
+   },
+   "data": [
+      {
+         "label": "16",
+         "value": "7.0"
+      },
+      {
+         "label": "17",
+         "value": "7.5"
+      },
+      {
+         "label": "18",
+         "value": "7.8"
+      },
+      {
+         "label": "19",
+         "value": "8.4"
+      },
+      {
+         "label": "20",
+         "value": "7.8"
+      },
+      {
+         "label": "21",
+         "value": "8.8"
+      },
+      {
+         "label": "22",
+         "value": "8.6"
+      },
+      {
+         "label": "23",
+         "value": "9.2"
+      },
+      {
+         "label": "24",
+         "value": "11.3"
+      },
+      {
+         "label": "01",
+         "value": "13.4"
+      },
+      {
+         "label": "02",
+         "value": "15.0"
+      },
+      {
+         "label": "03",
+         "value": "14.8"
+      },
+      {
+         "label": "04",
+         "value": "13.8"
+      },
+      {
+         "label": "05",
+         "value": "12.5"
+      },
+      {
+         "label": "06",
+         "value": "10.0"
+      },
+      {
+         "label": "07",
+         "value": "9.2"
+      },
+      {
+         "label": "08",
+         "value": "8.7"
+      },
+      {
+         "label": "09",
+         "value": "8.6"
+      },
+      {
+         "label": "10",
+         "value": "8.6"
+      },
+      {
+         "label": "11",
+         "value": "8.6"
+      },
+      {
+         "label": "12",
+         "value": "7.3"
+      },
+      {
+         "label": "13",
+         "value": "7.0"
+      },
+      {
+         "label": "14",
+         "value": "7.0"
+      },
+      {
+         "label": "15",
+         "value": "6.5"
+      }
+   ]
+   
+}
+  });
+revenueChart.render();
+})
+</script>
+</head>
+<body>
+	<div></div>
+  <div id="chartContainer">FusionCharts XT will load here!</div>
+</body>
 </html>
