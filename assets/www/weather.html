@@ -16,11 +16,15 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/fusioncharts.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/fusioncharts.theme.fint.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/weather_trend.js"></script>
+    <script type="text/javascript" charset="utf-8" src="JavaScript/air_quality.js"></script>
+    <script type="text/javascript" charset="utf-8" src="JavaScript/weather_trend.js"></script>
     <link href="css/style.css" rel="stylesheet" />
+    <script>
+        navigator.geo
+    </script>
 </head>
 <body>
     <div class="col-xs-12 no-margin no-padding" style="background:pink;">
@@ -69,8 +73,8 @@
                 <img src="img\icon1_03.png" style="width:100%;" class="img-responsive" />
             </div>
             <div class="container" style="background-image:url(img/icon2_01.png)">
-                <div class="col-xs-8">
-                    <img src="img/icon2_02.png" class="img-responsive"/>
+                <div class="col-xs-8" id="chart-container">
+
                 </div>
                 <div class="col-xs-4" style="font-size:24px;">
                     <p class="text-center">93</p>

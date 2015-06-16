@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.2/jquery.mobile.min.css">
+        <script src="js/cordova.js"></script>
+        <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
+        <script>
+            function createContacts(){
+               var contact = navigator.contacts.create();
+               var phoneNumbers = [];
+               phoneNumbers[0] = new ContactField("mobile",$("#fmobile").val(),false);
+               contact.phoneNumbers = phoneNumbers;
+               var name = new ContactName();
+               //name.formatted = $("#fname").val();
+               name.givenName="二小";
+               name.familyName = "王";
+               contact.name = name;
+               contact.save(onSaveSuccess,onSaveError);
+            }
+              function onSaveSuccess(contact) {
+                    alert("Save Success");
+                }
+
+            function onSaveError(contactError) {
+                alert("save Error = " + contactError.code);
+            }
+
+            function findContacts(){
+                 var options = new ContactFindOptions();
+                 options.filter=$("#fname1").val();
+                 alert(options.filter);
+                var fields = ["displayName", "name"];
+                navigator.contacts.find(fields, onSuccess, onError, options);
+            }
+            function onSuccess(){
+                for (var i=0; i<contacts.length; i++) {
+                alert("Display Name = " + contacts[i].displayName);
+                }
+            }
+              // onError: 获得联系人失败
+            function onError() {
+                alert('onError!');
+            }
+        </script>
+    </head>
+    <body>
+    <div data-role="page">
+        <div data-role="content">
+            <form  onsubmit="createContacts()" target="hideFrame">
+                <label for="fname">姓名：</label>
+                <input type="text" name="fname" id="fname">
+                <label for="fmobile">电话：</label>
+                <input type="text" name="fmobile" id="fmobile">
+                <input type="submit" data-inline="true" value="提交">
+            </form>
+            <form  onsubmit="findContacts()" target="hideFrame">
+                <label for="fname1">姓名：</label>
+                <input type="text" name="fname1" id="fname1">
+                <input type="submit" data-inline="true" value="提交">
+            </form>
+            <iframe name="hideFrame" hidden="hidden"/>
+            <div id="result">
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

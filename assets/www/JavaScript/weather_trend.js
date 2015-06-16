@@ -48,6 +48,7 @@
 							 "category": [
 							 {},
 								{
+									"link":"http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/9855C5331E004040B1A5D6C9D8483108",
 								   "label": "周日",
 								},
 								{
