@@ -1,0 +1,6 @@
+E:\工作\天气预报\weather\weather\bin\weather.dll.config
+E:\工作\天气预报\weather\weather\bin\weather.dll
+E:\工作\天气预报\weather\weather\bin\weather.pdb
+E:\工作\天气预报\weather\weather\obj\Debug\weather.csprojResolveAssemblyReference.cache
+E:\工作\天气预报\weather\weather\obj\Debug\weather.dll
+E:\工作\天气预报\weather\weather\obj\Debug\weather.pdb

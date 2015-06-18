@@ -1,0 +1,43 @@
+﻿#footerMenu {
+    background: none;
+    border: none;
+}
+
+#footerMenu ul {
+    background: none;
+}
+
+#footerMenu ul li {
+    
+}
+
+#footerMenu ul li a {
+    margin:0px;
+    padding:0px;
+    background:none;
+    /*background: #329dee;*/
+    border: none;
+    background-color:#329dee;
+}
+
+#footerMenu ul li a:hover{
+    text-decoration: none;
+    background-color: #1c7ed6;
+}
+
+#footerMenu ul li a img {
+    height: 15px;
+    width: auto;
+    margin-top:3px;
+}
+#footerMenu ul li a span{
+    font-weight:normal;
+}
+.footerMenu-a-clicked{
+    background-color: #1c7ed6;
+}
+#footerMenu .ui-btn-inner {
+    padding: 0px !important;
+    border: none;
+}
+

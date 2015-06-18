@@ -1,0 +1,29 @@
+﻿#footer-menu {
+    background-color: pink;
+    position: fixed;
+    bottom: 0px;
+}
+
+.footer-menu-bg {
+    background-color: #329dee;
+}
+
+#footer-menu img {
+    width: 20px;
+    height: auto;
+}
+
+#footer-menu span {
+    color: white;
+    font-size: 10px;
+    line-height: 20px;
+    display: block;
+}
+
+#menuOption1:hover, #menuOption2:hover, #menuOption3:hover {
+    cursor: pointer;
+    background-color: #1c7ed6;
+}
+.footer-menu-active{
+    background-color: #1c7ed6;
+}

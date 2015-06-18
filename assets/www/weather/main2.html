@@ -1,0 +1,904 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+   
+
+    <script src="js/load.js"></script>
+    <script type="text/javascript">
+        // loadJsCssFileRelToLoadJs("bootstrap-3.3.0-dist/dist/css/bootstrap.css", "css");
+        // loadJsCssFileRelToLoadJs("lightbox/lightbox.css", "css");
+        // loadJsCssFileRelToLoadJs("bootstrap-3.3.0-dist/dist/js/bootstrap.min.js", "js");
+        // loadJsCssFileRelToLoadJs("lightbox/lightbox-2.6.min.js", "js");
+        // loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
+        // loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
+        // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.js", "js");
+        // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
+        // loadJsCssFileRelToLoadJs("weather_trend.js", "js");
+        loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
+        loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
+        loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
+        loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
+        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
+        $(function () {
+
+        })
+    </script>
+    
+</head>
+<body>
+    <div data-role="page" id="main">
+        <script type="text/javascript">
+            loadJsCssFileRelToLoadJs("../css/footStyle.css", "css");
+            loadJsCssFileRelToLoadJs("../css/headerStyle.css", "css");
+            loadJsCssFileRelToLoadJs("../css/mainStyle.css", "css");
+            loadJsCssFileRelToLoadJs("../css/secondaryMenuStyle.css", "css");
+            loadJsCssFileRelToLoadJs("../css/swiper/swiper.min.css", "css");
+            //loadJsCssFileRelToLoadJs("../js/masonry/dist/masonry.pkgd.min.js", "js");
+            //loadJsCssFileRelToLoadJs("../js/imagesloaded.js", "js");
+
+
+            //loadJsCssFileRelToLoadJs("../js/fusioncharts/fusioncharts.js", "js");
+            //loadJsCssFileRelToLoadJs("../js/fusioncharts/fusioncharts.theme.fint.js", "js");
+
+        </script>
+        <style>
+            * {
+                color: white;
+                font-family: 微软雅黑;
+                /*font-weight:normal;*/
+                text-shadow: none;
+                font-size: 12px;
+            }
+
+            body {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                /*overflow: hidden;*/
+            }
+
+            #main {
+                height: 100%;
+            }
+
+            .swiper-container {
+                width: 100%;
+                height: 100%;
+            }
+
+            .swiper-slide {
+                /* height: 100% !important;*/
+            }
+            .swiper-container-con1 .swiper-slide {
+                height: auto;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .swiper-container-con2 .swiper-slide {
+                height: auto;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+        </style>
+
+
+        <div class="swiper-container swiper-container-all" style="background-image: url(img/c-1.jpg); background-size: 100% auto;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-color:transparent;">
+                    <div class="swiper-container swiper-container-con1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="padding:3px;text-align:center;">
+                                <div id="photo_wall" class="photo-wall">
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/1.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/2.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/3.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/1.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/2.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/3.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/1.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/2.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/3.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/1.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/2.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/3.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/4.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/5.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/6.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/7.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/8.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/9.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="photo-wall-item">
+                                        <div class="photo-box">
+                                            <img src="img/pubuliu/10.jpg" />
+                                        </div>
+                                    </div>
+                                </div>                                                                                                                                                          
+                            </div>
+                        </div>
+                        <div class="swiper-scrollbar1 swiper-scrollbar"></div>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-color:transparent;">
+                    <div class="swiper-container swiper-container-con2">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="padding:3px;text-align:center;">
+                                <div class="box1 ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <span id="currentDate" class="current-time">2015-04-09 星期四 乙未年 二月廿一 庚辰月 乙卯日</span>
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input class="box1-camera-btn" type="image" src="img/camera.png" />
+                                    </div>
+                                </div>
+                                <div class="box2">
+                                    <h1 id="main_box2_position">磐安县</h1>
+                                    <div class="ui-grid-b">
+                                        <div class="ui-block-a">
+                                            <img id="main_box2_icon1" src="img/main_box2_icon1.png" />
+                                        </div>
+                                        <div class="ui-block-b">
+                                            <img id="main_box2_icon2" src="img/main_box2_icon2.png" />
+                                        </div>
+                                        <div class="ui-block-c">
+                                            <p><span id="main_box2_weather">多云转小雨</span><br /><span id="main_box2_temp">5-23℃</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box3">
+                                    <h3>当前实况</h3>
+                                    <div class="title-divider"></div>
+                                    <div class="ui-grid-a box3_con">
+                                        <div class="ui-block-a block1">
+                                            <img id="main_box3_icon1" src="\img\main_box3_icon1.png" />
+                                        </div>
+                                        <div class="ui-block-b block2">
+                                            <p id="main_box3_weather">晴</p>
+                                            <div class="main-box3-divider"></div>
+                                            <div class="ui-grid-b  box3-current-detail">
+                                                <div class="ui-block-a">
+                                                    <p id="main_box3_wind1">北风</p>
+                                                    <p id="main_box3_wind2">3级</p>
+                                                </div>
+                                                <div class="ui-block-b">
+                                                    <p id="main_box3_temp1">相对温度</p>
+                                                    <p id="main_box3_temp2">30%</p>
+                                                </div>
+                                                <div class="ui-block-c">
+                                                    <img id="main_box3_icon2" src="\img\main_box3_icon2.png" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box4">
+                                    <h3>负氧离子</h3>
+                                    <div class="title-divider"></div>
+                                    <div class="box4_con">
+                                        <div class="box4_grade">
+                                            <h4>负氧离子含量与空气质量关系图 单位：个/cm3</h4>
+                                            <div class="ui-grid-c">
+                                                <div class="ui-block-a">
+                                                    <span class="box4_grade1_text">非常清新</span>
+                                                </div>
+                                                <div class="ui-block-b">
+                                                    <div class="box4_grade1_bar">
+                                                        <span>>2000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ui-block-c">
+                                                    <img src="img/grade1.png" />
+                                                </div>
+                                                <div class="ui-block-d">
+                                                    <span>1000</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-grid-c">
+                                                <div class="ui-block-a">
+                                                    <span class="box4_grade2_text">清新</span>
+                                                </div>
+                                                <div class="ui-block-b">
+                                                    <div class="box4_grade2_bar">
+                                                        <span>1500-2000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ui-block-c">
+                                                    <img src="img/grade2.png" />
+                                                </div>
+                                                <div class="ui-block-d">
+                                                    <span>1000</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-grid-c">
+                                                <div class="ui-block-a">
+                                                    <span class="box4_grade3_text">较清新</span>
+                                                </div>
+                                                <div class="ui-block-b">
+                                                    <div class="box4_grade3_bar">
+                                                        <span>1000-1500</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ui-block-c">
+                                                    <img src="img/grade3.png" />
+                                                </div>
+                                                <div class="ui-block-d">
+                                                    <span>1000</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-grid-c">
+                                                <div class="ui-block-a">
+                                                    <span class="box4_grade4_text">一般</span>
+                                                </div>
+                                                <div class="ui-block-b">
+                                                    <div class="box4_grade4_bar">
+                                                        <span>500-1000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ui-block-c">
+                                                    <img src="img/grade4.png" />
+                                                </div>
+                                                <div class="ui-block-d">
+                                                    <span>1000</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-grid-c">
+                                                <div class="ui-block-a">
+                                                    <span class="box4_grade5_text">不清新</span>
+                                                </div>
+                                                <div class="ui-block-b">
+                                                    <div class="box4_grade5_bar">
+                                                        <span>300-500</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ui-block-c">
+                                                    <img src="img/grade5.png" />
+                                                </div>
+                                                <div class="ui-block-d">
+                                                    <span>1000</span>
+                                                </div>
+                                            </div>
+                                            <div class="ui-grid-c">
+                                                <div class="ui-block-a">
+                                                    <span class="box4_grade6_text">非常不清新</span>
+                                                </div>
+                                                <div class="ui-block-b">
+                                                    <div class="box4_grade6_bar">
+                                                        <span><300</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ui-block-c">
+                                                    <img src="img/grade6.png" />
+                                                </div>
+                                                <div class="ui-block-d">
+                                                    <span>1000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h5>负氧离子：</h5>
+                                        <p>负氧离子被誉为“空气维生素”。负氧离子有利于人体的身心健康。</p>
+                                        <h5>负氧离子的功效：</h5>
+                                        <p>
+                                            1. 消烟、除尘：负离子能迅速中和空气中属于正离子的焦烟、“二手烟”、油烟及飘尘；<br />
+                                            2. 改善空气结构：人每天需要130亿个负离子，而我们居室、办公室、娱乐场所等环境仅册提供约2-20亿个负离子，往上爬往容易导致肺炎、气管炎等呼吸道疾病；<br />
+                                            3. 改善肺功能：吸入负离子30分钟后，肺能增加氧气吸收量20%，而多排出14.5二氧化碳；<br />
+                                            4. 改善心肌功能：有明显降压作用，可使人精神振奋。提高工作效率。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="box5">
+                                    <h3>PM2.5</h3>
+                                    <div class="box5_con">
+                                        <div class="title-divider"></div>
+                                        <div class="ui-grid-b">
+                                            <div class="ui-block-a" style="height:100px;">
+                                               
+                                                <div id="chartContainer2"></div>
+                                            </div>
+                                            <div class="ui-block-c">
+                                                <p id="main_box5_quality1">93</p>
+                                                <p id="main_box5_quality2">良</p>
+                                            </div>
+                                        </div>
+                                        <p id="main_box5_tip">
+                                            温馨提示：空气质量可接受，但某些污染物可能对极少数异常敏感人群健康有较弱影响。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="box6">
+                                    <h3>未来三天天气预报</h3>
+                                    <div class="title-divider"></div>
+                                    <div class="box6_con" style="height:300px;">
+                                        <!--<img src="img/icon4_02.png" style="width:80%;height:auto;" />-->
+                                        <table class="box6-table" style="width:100%;text-align:center;">
+                                            <tr>
+                                                <td style="width:10%"></td>
+                                                <td>
+                                                    周日<br />
+                                                    13/5<br />
+                                                    下午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td>
+                                                    周一<br />
+                                                    14/5<br />
+                                                    上午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td>
+                                                    周一<br />
+                                                    14/5<br />
+                                                    下午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td>
+                                                    周二<br />
+                                                    15/5<br />
+                                                    上午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td>
+                                                    周二<br />
+                                                    15/5<br />
+                                                    下午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td>
+                                                    周三<br />
+                                                    16/5<br />
+                                                    上午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td style="width:10%"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8">
+                                                    <div id="chartContainer"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:10%"></td>
+                                                <td>
+                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                    北风<br />
+                                                    微风<br />
+                                                </td>
+                                                <td>
+                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                    北风<br />
+                                                    <2级<br />
+                                                </td>
+                                                <td>
+                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                    东风<br />
+                                                    3-4级<br />
+                                                </td>
+                                                <td>
+                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                    东风<br />
+                                                    1-2级<br />
+                                                </td>
+                                                <td>
+                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                    南风<br />
+                                                    3级<br />
+                                                </td>
+                                                <td>
+                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                    西风<br />
+                                                    微风<br />
+                                                </td>
+                                                <td style="width:10%"></td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="box7">
+                                    <h3>旅游指数</h3>
+                                    <div class="title-divider"></div>
+                                    <div class="box7_con">
+                                        <div class="ui-grid-a">
+                                            <div class="ui-block-a">
+                                                <img src="img/icon5_05.png" />
+                                                <p>舒适度指数<br /><span>较舒适</span></p>
+                                            </div>
+                                            <div class="ui-block-b">
+                                                <img src="img/icon5_07.png" />
+                                                <p>空气清新指数<br /><span>中等</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-scrollbar swiper-scrollbar2"></div>
+                    </div>
+                    
+                </div>
+                <!--<div class="swiper-slide" style="background-color:green;">Slide 2</div>-->
+
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" id="footerMenu" data-fullscreen="true">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="secondarymenu.html"><img src="img/main_btn01.png" /><br /><span>实况监测</span></a>
+                    </li>
+                    <li>
+                        <a href="tianqiyubao.html"><img src="img/main_btn02.png" /><br /><span>天气预报</span></a>
+                    </li>
+                    <!--<li>
+                    <a><img src="img/main_btn03.png" /><br /><span>统计查询</span></a>
+                </li>-->
+                </ul>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                FusionCharts.ready(function () {
+                    //var width = screen.availWidth;
+                    var height = 120;
+                    var lineChart = new FusionCharts({
+                        events: {
+                            //entityClick: function (event, args) {
+                            //    console.log(args.label + 'clicked');
+                            //    alert(1);
+                            //},
+                            loaded: function () {
+                                var text = document.getElementsByTagName("tspan");
+                                for (var i = 0; i < text.length; i++) {
+                                    if (text[i].innerHTML == "FusionCharts XT Trial") {
+                                        text[i].style.display = "none";
+                                    }
+                                }
+
+                            },
+                            resized: function () {
+                                setTimeout(function () {
+                                    var text = document.getElementsByTagName("tspan");
+                                    for (var i = 0; i < text.length; i++) {
+                                        if (text[i].innerHTML == "FusionCharts XT Trial") {
+                                            text[i].style.display = "none";
+                                        }
+                                    }
+                                }, 1);
+                            }
+                        },
+                        "type": "msline",
+                        "renderAt": "chartContainer",
+                        "width": "100%",
+                        "height": height,
+                        "dataFormat": "json",
+                        "dataSource": {
+                            "chart": {
+                                "bgAlpha": "0",
+                                "showValues": "1",
+                                "showBorder": "0",
+                                //"paletteColors": "#F6E639,#92D4F7",
+                                // "bgcolor": "#5c8aa0",
+                                "xAxisNamePadding": "50",
+                                "chartLeftMargin": "0",
+                                "chartRightMargin": "0",
+                                "chartTopMargin": "0",
+                                "chartBottomMargin": "0",
+                                //是否显示y轴刻度
+                                "showYAxisValues": "0",
+                                "showCanvasBorder": "0",
+                                "usePlotGradientColor": "0",
+                                //"legendBorderAlpha": "0",
+                                //"legendShadow": "0",
+                                "showAxisLines": "0",
+                                "showYAxisLines": "0",
+                                "showAlternateHGridColor": "0",
+                                "divlineThickness": "1",
+                                "divLineDashed": "0",
+                                "divLineDashLen": "0",
+                                "divLineGapLen": "0",
+                                "yAxisMaxValue": "30",
+                                "yAxisMinValue": "-10",
+                                "numVDivLines": "6",
+                                "divLineColor": "#5c8aa0",
+                                "divLineAlpha": "0",
+                                "vDivLineAlpha": "15",
+                                "vdivLineColor": "#ffffff",
+                                "showAlternateVGridColor": "0",
+                                //画布背景
+                                //"canvasBgColor":"#5c8aa0",
+                                // "canvasBgColor":"#000",
+                                "canvasBgAlpha": "0",
+                                "showLegend": "0",
+                                "baseFontColor": "#FFFFFF",
+                                "anchorRadius": "5",
+                                "showToolTip": "1",
+                                "numDivLines": "1",
+                                "toolTipColor": "#000000"
+
+                            },
+                            "categories": [
+                               {
+
+                                   "category": [
+                                      {},
+                                      {
+                                      },
+                                      {
+                                      },
+                                      {
+                                      },
+                                      {
+                                      },
+                                      {
+                                      },
+                                      {
+                                      },
+                                      {}
+                                   ]
+                               }
+                            ],
+                            "dataset": [
+                               {
+                                   //"seriesname": "Bakersfield Central",
+                                   "color": "#fe7506",
+                                   "valuePosition": "above",
+                                   "anchorBgColor": "#fe7506",
+                                   "baseFontColor": "#fe7506",
+                                   "data": [
+                                      {
+                                          "value": ""
+                                      },
+                                      {
+                                          "value": "1"
+                                      },
+                                      {
+                                          "value": "12",
+                                      },
+                                      {
+                                          "value": "16"
+                                      },
+                                      {
+                                          "value": "22"
+                                      },
+                                      {
+                                          "value": "19"
+                                      },
+                                      {
+                                          "value": "17"
+                                      },
+                                      {
+                                          "value": ""
+                                      }
+                                   ]
+                               },
+                               {
+                                   //"seriesname": "Los Angeles Topanga",
+                                   "color": "#95d44c",
+                                   "valuePosition": "below",
+                                   "anchorBgColor": "#95d44c",
+                                   "valueFontColor": "#95d44c",
+                                   "data": [
+                                      {
+                                          "value": ""
+                                      },
+                                      {
+                                          "value": "0"
+                                      },
+                                      {
+                                          "value": "-2"
+                                      },
+                                      {
+                                          "value": "3"
+                                      },
+                                      {
+                                          "value": "9"
+                                      },
+                                      {
+                                          "value": "1"
+                                      },
+                                      {
+                                          "value": "5"
+                                      },
+                                      {
+                                          "value": ""
+                                      },
+                                   ]
+                               }
+                            ]
+
+                        }
+                    });
+                    lineChart.render();
+                    lineChart.setTransparent(true);
+                });
+
+                FusionCharts.ready(function () {
+                    var csatGauge = new FusionCharts({
+                        events: {
+                            //entityClick: function (event, args) {
+                            //    console.log(args.label + 'clicked');
+                            //    alert(1);
+                            //},
+                            loaded: function () {
+                                var text = document.getElementsByTagName("tspan");
+                                for (var i = 0; i < text.length; i++) {
+                                    if (text[i].innerHTML == "FusionCharts XT Trial") {
+                                        text[i].style.display = "none";
+                                    }
+                                }
+
+                            },
+                            resized: function () {
+                                setTimeout(function () {
+                                    var text = document.getElementsByTagName("tspan");
+                                    for (var i = 0; i < text.length; i++) {
+                                        if (text[i].innerHTML == "FusionCharts XT Trial") {
+                                            text[i].style.display = "none";
+                                        }
+                                    }
+                                }, 1);
+                            }
+                        },
+                        "type": "angulargauge",
+                        "renderAt": "chartContainer2",
+                        "width": "100%",
+                        "height": "100",
+                        "dataFormat": "json",
+                        "dataSource": {
+                            "chart": {
+                                "bgAlpha": "0",
+                                "lowerLimit": "0",
+                                "upperLimit": "500",
+                                "theme": "fint",
+                                "showLegend": "0",
+                                "majorTMColor": "#B1E253",
+                                "minortmnumber": "1",
+                                "majortmnumber": "10",
+                                "majorTMThickness": "1",
+                                "showLimits": "1",
+                                "showTickValues": "1",
+                                "autoAlignTickValues": "1",
+                                //"bgColor": "#B1E253"
+                                //刻度值距离表盘的距离
+                                //"tickValueDistance":"50"
+                                //每隔多少步长显示刻度值
+                                //"tickValueStep":"2"
+                                //"lowerLimitDisplay":"min",
+                                //"placeTicksInside":"1",
+                            },
+                            "colorRange": {
+                                "color": [
+                                   {
+                                       "minValue": "0",
+                                       "maxValue": "50",
+                                       "code": "#01E401",
+                                       "borderColor": "#B1E253",
+                                   },
+                                   {
+                                       "minValue": "50",
+                                       "maxValue": "100",
+                                       "code": "#FEFE00",
+                                       "borderColor": "#B1E253",
+                                   },
+                                   {
+                                       "minValue": "100",
+                                       "borderColor": "#B1E253",
+                                       "maxValue": "150",
+                                       "code": "#FF7F00"
+                                   },
+                                   {
+                                       "minValue": "150",
+                                       "maxValue": "200",
+                                       "borderColor": "#B1E253",
+                                       "code": "#FE0000"
+                                   },
+                                   {
+                                       "minValue": "200",
+                                       "maxValue": "300",
+                                       "borderColor": "#B1E253",
+                                       "code": "#98004B"
+                                   },
+                                   {
+                                       "minValue": "300",
+                                       "maxValue": "500",
+                                       "code": "#7E0123",
+                                       "borderColor": "#B1E253",
+                                   }
+                                ]
+                            },
+                            "dials": {
+                                "dial": [
+                                   {
+                                       "id": "value",
+                                       "value": "230",
+                                       "bgcolor": "#FFFFFF",
+                                       "bordercolor": "#FFFFFF",
+                                       "editMode": "0",
+                                       //"radius": "250",
+                                       "basewidth": "20",
+                                       "baseRadius": "100",
+                                       //"topwidth": "1",
+                                       //"borderthickness": "2",
+                                   }
+                                ]
+                            }
+                        }
+                    });
+                    csatGauge.render();
+                    csatGauge.setTransparent(true);
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                // init Masonry
+                //alert(hhhhh);
+                var $grid = $('#main .photo-wall').masonry({
+                    itemSelector: '#main .photo-wall-item',
+                    isOriginTop: false,
+                });
+                // layout Isotope after each image loads
+                $grid.imagesLoaded().progress(function () {
+                    $grid.masonry();
+                });
+            });
+        </script>
+            <!-- Add Pagination -->
+            <!--<div class="swiper-pagination"></div>-->
+
+            <!--<script src="js/swiper/swiper.min.js"></script>-->
+            <script>
+
+                $(function () {
+                    setTimeout(function () {
+                        var swiperAll = new Swiper('.swiper-container-all', {
+                            initialSlide: 1,
+                            pagination: '.swiper-pagination',
+                            paginationClickable: true,
+                            mousewheelInvert: true,//?
+                            hashnav: true,//?
+                            touchRatio: 1,//貌似作用是：值越大时鼠标或是手势移动时翻页的速度越大越快
+                            direction: 'vertical',
+                            touchAngle: 45,//允许翻页的角度范围
+                            simulateTouch: true,//是否通过鼠标的drag和点击事件来模拟 touch事件（主要是电脑浏览器上没有touch事件），如果为false则电脑浏览器不具备翻页效果
+                            followFinger: true//设置翻页效果是否跟随手势
+                        });
+                        var _end = 0;
+                        var _beginning = 0;
+                        var swiperCon1 = new Swiper('.swiper-container-con1', {
+                            initialSlide: 100,
+                            scrollbar: '.swiper-scrollbar1',                           
+                            direction: 'vertical',
+                            slidesPerView: 'auto',
+                            mousewheelControl: true,
+                            //mousewheelReleaseOnEdges: true,
+                            //mousewheelInvert:ture,
+                            parallax: true,
+                            freeMode: true,
+                            onReachEnd: function (swiper) {
+                                if (swiper.isEnd && _end > 8) {
+                                    swiperAll.slideNext(true, 1000);
+                                    _end = 0;
+                                }
+                                else
+                                    _end++;
+                            },
+                            onReachBeginning: function (swiper) {
+                                if (swiper.isBeginning && _beginning > 8) {
+                                    swiperAll.slidePrev(true, 1000);
+                                    _beginning = 0;
+                                } else {
+                                    _beginning++;
+                                }
+                            }
+                        });
+                        var swiperCon2 = new Swiper('.swiper-container-con2', {
+                            
+                            scrollbar: '.swiper-scrollbar2',
+                            direction: 'vertical',
+                            slidesPerView: 'auto',
+                            mousewheelControl: true,
+                            //mousewheelReleaseOnEdges: true,
+                            //mousewheelInvert:ture,
+                            parallax: true,
+                            freeMode: true,
+                            onReachEnd: function (swiper) {
+                                if (swiper.isEnd && _end > 8) {
+                                    swiperAll.slideNext(true, 1000);
+                                    _end = 0;
+                                }
+                                else
+                                    _end++;
+                            },
+                            onReachBeginning: function (swiper) {
+                                if (swiper.isBeginning && _beginning > 8) {
+                                    swiperAll.slidePrev(true, 1000);
+                                    _beginning = 0;
+                                } else {
+                                    _beginning++;
+                                }
+                            }
+                        });
+                    }, 10);
+
+                })
+
+            </script>
+    </div>
+</body>
+</html>
