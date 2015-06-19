@@ -36,7 +36,7 @@ public class MainActivity extends DroidGap {
 		//System.out.println(tableData1);
 		//Log.i("TAG",tableData1);
 		// super.loadUrl("file:///android_asset/www/weather.html");
-		super.loadUrl("file:///android_asset/www/main2.html");
+		super.loadUrl("file:///android_asset/www/index.html");
 		//super.loadUrl("http://www.phonegap100.com/doc/cordova_file_file.md.html#File");
 		//super.loadUrl(Config.getStartUrl());
 	}

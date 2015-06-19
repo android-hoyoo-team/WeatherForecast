@@ -70,9 +70,7 @@
                 height: 100%;
             }
 
-            .swiper-slide {
-                /* height: 100% !important;*/
-            }
+            
             .swiper-container-con1 .swiper-slide {
                 height: auto;
                 -webkit-box-sizing: border-box;
@@ -91,7 +89,9 @@
                 <div class="swiper-slide" style="background-color:transparent;">
                     <div class="swiper-container swiper-container-con1">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="padding:3px;text-align:center;">
+                            <div id="hhh" class="swiper-slide" style="padding:3px;text-align:center;">
+                                
+                                <!--<img src="img/icon5_05.png" />-->
                                 <div id="photo_wall" class="photo-wall">
                                     <div class="photo-wall-item">
                                         <div class="photo-box">
@@ -188,16 +188,18 @@
                                             <img src="img/pubuliu/10.jpg" />
                                         </div>
                                     </div>
-                                </div>                                                                                                                                                          
+                                </div>
+                                
                             </div>
                         </div>
-                        <div class="swiper-scrollbar1 swiper-scrollbar"></div>
+                        <div class="swiper-scrollbar swiper-scrollbar1"></div>
                     </div>
+
                 </div>
                 <div class="swiper-slide" style="background-color:transparent;">
                     <div class="swiper-container swiper-container-con2">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="padding:3px;text-align:center;">
+                            <div id="hhh" class="swiper-slide" style="padding:3px;text-align:center;">
                                 <div class="box1 ui-grid-a">
                                     <div class="ui-block-a">
                                         <span id="currentDate" class="current-time">2015-04-09 星期四 乙未年 二月廿一 庚辰月 乙卯日</span>
@@ -225,7 +227,7 @@
                                     <div class="title-divider"></div>
                                     <div class="ui-grid-a box3_con">
                                         <div class="ui-block-a block1">
-                                            <img id="main_box3_icon1" src="\img\main_box3_icon1.png" />
+                                            <img id="main_box3_icon1" src="img\main_box3_icon1.png" />
                                         </div>
                                         <div class="ui-block-b block2">
                                             <p id="main_box3_weather">晴</p>
@@ -240,7 +242,7 @@
                                                     <p id="main_box3_temp2">30%</p>
                                                 </div>
                                                 <div class="ui-block-c">
-                                                    <img id="main_box3_icon2" src="\img\main_box3_icon2.png" />
+                                                    <img id="main_box3_icon2" src="img\main_box3_icon2.png" />
                                                 </div>
                                             </div>
                                         </div>
@@ -490,6 +492,7 @@
                     </div>
                     
                 </div>
+                <!--<div class="swiper-slide" style="background-color:transparent;">33333</div>-->
                 <!--<div class="swiper-slide" style="background-color:green;">Slide 2</div>-->
 
             </div>
@@ -806,96 +809,145 @@
 
         <script>
             $(document).ready(function () {
+   
                 // init Masonry
                 //alert(hhhhh);
-					setTimeout(function () {
-					var $grid = $('#main .photo-wall').masonry({
-						itemSelector: '#main .photo-wall-item',
-						isOriginTop: false,
-					});
-					// layout Isotope after each image loads
-					$grid.imagesLoaded().progress(function () {
-						$grid.masonry();
-					});
-				},2000);
+                //setTimeout(function () {
+               
+					//var $grid = $('#main .photo-wall').masonry({
+					//	itemSelector: '#main .photo-wall-item',
+					//	isOriginTop: false,
+					//});
+					//// layout Isotope after each image loads
+					//$grid.imagesLoaded().progress(function () {
+					//	$grid.masonry();
+					//});
+				
+				//},1000);
+
 			});
         </script>
-            <!-- Add Pagination -->
-            <!--<div class="swiper-pagination"></div>-->
-
-            <!--<script src="js/swiper/swiper.min.js"></script>-->
+           
             <script>
-
-                $(function () {
-                  //  setTimeout(function () {
-                        var swiperAll = new Swiper('.swiper-container-all', {
+                var _end = 0;
+                var _beginning = 0;
+                var swiperAll;
+                var swiperCon1;
+                var swiperCon2;
+                $(function () {                 
+                 //   setTimeout(function () {
+                       swiperAll = new Swiper('.swiper-container-all', {
                             initialSlide: 1,
-                            pagination: '.swiper-pagination',
-                            paginationClickable: true,
+                            //pagination: '.swiper-pagination',
+                            //paginationClickable: true,
                             mousewheelInvert: true,//?
                             hashnav: true,//?
                             touchRatio: 1,//貌似作用是：值越大时鼠标或是手势移动时翻页的速度越大越快
                             direction: 'vertical',
                             touchAngle: 45,//允许翻页的角度范围
                             simulateTouch: true,//是否通过鼠标的drag和点击事件来模拟 touch事件（主要是电脑浏览器上没有touch事件），如果为false则电脑浏览器不具备翻页效果
-                            followFinger: true//设置翻页效果是否跟随手势
-                        });
-                        var _end = 0;
-                        var _beginning = 0;
-                        var swiperCon1 = new Swiper('.swiper-container-con1', {
-                            initialSlide: 100,
-                            scrollbar: '.swiper-scrollbar1',                           
-                            direction: 'vertical',
-                            slidesPerView: 'auto',
-                            mousewheelControl: true,
-                            //mousewheelReleaseOnEdges: true,
-                            //mousewheelInvert:ture,
-                            parallax: true,
-                            freeMode: true,
-                            onReachEnd: function (swiper) {
-                                if (swiper.isEnd && _end > 8) {
-                                    swiperAll.slideNext(true, 1000);
-                                    _end = 0;
-                                }
-                                else
-                                    _end++;
+                            followFinger: true,//设置翻页效果是否跟随手势
+                            onInit:function(swiper)
+                            {
+                                swiperCon2 = new Swiper('.swiper-container-con2', {
+                                    scrollbar: '.swiper-scrollbar2',
+                                    direction: 'vertical',
+                                    slidesPerView: 'auto',
+                                    mousewheelControl: true,
+                                    //mousewheelReleaseOnEdges: true,
+                                    //mousewheelInvert:ture,
+                                    parallax: true,
+                                    freeMode: true,
+                                    onReachEnd: function (swiperCon2) {
+                                        if (swiperCon2.isEnd && _end > 8) {
+                                            swiperAll.slideNext(true, 1000);
+                                            _end = 0;
+                                            _beginning = 0;
+                                        }
+                                        else
+                                            _end++;
+                                    },
+                                    onReachBeginning: function (swiperCon2) {
+                                        if (swiperCon2.isBeginning && _beginning > 8) {
+                                            swiperAll.slidePrev(true, 1000);
+                                            _end = 0;
+                                            _beginning = 0;
+                                        } else {
+                                            _beginning++;
+                                        }
+                                    }
+                                });
+                                setTimeout(function () {
+                                    swiperCon2.update(true);
+                                },100);
                             },
-                            onReachBeginning: function (swiper) {
-                              //加载图片
-                            }
                         });
-                        var swiperCon2 = new Swiper('.swiper-container-con2', {
-                            
-                            scrollbar: '.swiper-scrollbar2',
-                            direction: 'vertical',
-                            slidesPerView: 'auto',
-                            mousewheelControl: true,
-                            //mousewheelReleaseOnEdges: true,
-                            //mousewheelInvert:ture,
-                            parallax: true,
-                            freeMode: true,
-                            onReachEnd: function (swiper) {
-                                if (swiper.isEnd && _end > 8) {
-                                    swiperAll.slideNext(true, 1000);
-                                    _end = 0;
+                        var $grid = $('#main .photo-wall').imagesLoaded(function () {
+                            // init Masonry after all images have loaded
+                            $('#main .photo-wall').masonry({
+                                itemSelector: '#main .photo-wall-item',
+                                isOriginTop: false,
+                            });
+                            $grid.masonry('on', 'layoutComplete',
+                               function (laidOutItems) {
+                                   //alert(1);
+                                   setTimeout(function () {
+                                       //alert("你妹妹");
+                                        swiperCon1.update(true);
+                                   }, 100);
+                               }
+                            );
+                            swiperCon1 = new Swiper('.swiper-container-con1', {
+                                initialSlide: 100,
+                                scrollbar: '.swiper-scrollbar1',
+                                direction: 'vertical',
+                                slidesPerView: 'auto',
+                                mousewheelControl: true,
+                                //mousewheelReleaseOnEdges: true,
+                                //mousewheelInvert:ture,
+                                parallax: true,
+                                freeMode: true,
+                                onReachEnd: function (swiperCon1) {
+                                    if (swiperCon1.isEnd && _end > 8) {
+                                        swiperAll.slideNext(true, 1000);
+                                        setTimeout(function () {
+                                            //alert("你妹妹");
+                                            swiperCon2.update(true);
+                                        }, 100);
+                                        _end = 0;
+                                        _beginning = 0;
+                                    }
+                                    else
+                                        _end++;
+                                },
+                                onReachBeginning: function (swiperCon1) {
+                                    //加载图片
+                                    if (swiperCon1.isBeginning && _beginning > 8) {
+                                        var $items = $('<div class="photo-wall-item"><div class="photo-box"><img src="img/pubuliu/1.jpg" /></div></div>');
+                                        $('#main .photo-wall').append($items)
+                                            // add and lay out newly appended items
+                                            .masonry('appended', $items);
+                                            _end = 0;
+                                            _beginning = 0;
+                                      } else {
+                                        _beginning++;
+                                     }
                                 }
-                                else
-                                    _end++;
-                            },
-                            onReachBeginning: function (swiper) {
-                                if (swiper.isBeginning && _beginning > 8) {
-                                    swiperAll.slidePrev(true, 1000);
-                                    _beginning = 0;
-                                } else {
-                                    _beginning++;
-                                }
-                            }
+                            });
+                            // alert(100);
+                            setTimeout(function () {
+
+                            }, 5000);
+
+
                         });
-                    //}, 10);
+
+                  //  }, 10);
 
                 });
 
             </script>
+        
     </div>
 </body>
 </html>

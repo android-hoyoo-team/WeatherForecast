@@ -21,7 +21,7 @@
         loadJsCssFileRelToLoadJs("../js/masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("../js/imagesloaded.js", "js");
         $(function () {
-            $("#autoLoginTxt").click(function () {
+            $("#loginBtn").click(function () {
                 location = "main2.html"
             });
         })
@@ -57,7 +57,7 @@
                     <input id="pwdInput" type="password" placeholder="密码" />
                 </div>
                 <div class="login-box">
-                    <a data-role="button" href="main2.html" data-transition="pop" id="loginBtn">登录</a>
+                    <a data-role="button" data-transition="pop" id="loginBtn">登录</a>
                 </div>
                 <div class="register-box">
                     <a data-role="button" id="registerBtn">注册</a>

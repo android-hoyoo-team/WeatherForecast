@@ -6,7 +6,8 @@
 }
 
 #login {
-    background: radial-gradient(RGB(35,175,234), RGB(0,71,137) );
+    background: -webkit-radial-gradient(RGB(35,175,234), RGB(0,71,137) );
+   
     width: 100%;
 }
 
@@ -79,20 +80,20 @@
 }
 
 #loginBtn {
-    background: linear-gradient(#aeeb38, #67a425);
+    background:  -webkit-linear-gradient(#aeeb38, #67a425);
 }
 
     #loginBtn:hover, #loginBtn:focus, #loginBtn:active {
-        background: linear-gradient(#67a425,#aeeb38);
+        background: -webkit-linear-gradient(#67a425,#aeeb38);
         text-decoration: none;
     }
 
 #registerBtn {
-    background: linear-gradient(#ffa200, #ec6e2f);
+    background: -webkit-linear-gradient(#ffa200, #ec6e2f);
 }
 
     #registerBtn:hover, #registerBtn:focus, #registerBtn:active {
-        background: linear-gradient(#ec6e2f,#ffa200);
+        background: -webkit-linear-gradient(#ec6e2f,#ffa200);
         text-decoration: none;
     }
 
