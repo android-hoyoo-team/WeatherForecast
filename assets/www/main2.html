@@ -22,6 +22,7 @@
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
         loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
+        loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
         //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
         $(function () {
 
@@ -205,7 +206,7 @@
                                         <span id="currentDate" class="current-time">2015-04-09 星期四 乙未年 二月廿一 庚辰月 乙卯日</span>
                                     </div>
                                     <div class="ui-block-b">
-                                        <input class="box1-camera-btn" type="image" src="img/camera.png" />
+                                        <input id="cameraBtn" class="box1-camera-btn" type="image" src="img/camera.png" />    
                                     </div>
                                 </div>
                                 <div class="box2">
@@ -489,12 +490,8 @@
                             </div>
                         </div>
                         <div class="swiper-scrollbar swiper-scrollbar2"></div>
-                    </div>
-                    
+                    </div>               
                 </div>
-                <!--<div class="swiper-slide" style="background-color:transparent;">33333</div>-->
-                <!--<div class="swiper-slide" style="background-color:green;">Slide 2</div>-->
-
             </div>
         </div>
         <div data-role="footer" data-position="fixed" id="footerMenu" data-fullscreen="true">
@@ -506,12 +503,18 @@
                     <li>
                         <a href="tianqiyubao.html"><img src="img/main_btn02.png" /><br /><span>天气预报</span></a>
                     </li>
-                    <!--<li>
-                    <a><img src="img/main_btn03.png" /><br /><span>统计查询</span></a>
-                </li>-->
                 </ul>
             </div>
         </div>
+        <div id="dialogCon" style="display:none">       
+            <ul class="dialog-ul">
+                <li>
+                    <input type="button" value="拍照" id="photoBtn1" style="background-color:gray;"/>
+                    <input type="button" value="从照片中选择" id="photoBtn2"/>
+                </li>
+            </ul>
+        </div>
+        
         <script>
             $(function () {
                 FusionCharts.ready(function () {
@@ -804,6 +807,7 @@
                     csatGauge.render();
                     csatGauge.setTransparent(true);
                 });
+
             });
         </script>
 
@@ -823,9 +827,17 @@
 					//	$grid.masonry();
 					//});
 				
-				//},1000);
-
-			});
+                //},1000);
+            });
+            document.getElementById("cameraBtn").onclick = function () {
+                easyDialog.open({
+                    header: '请选择..',
+                    container: 'dialogCon',                   
+                    fixed:false
+                });
+            };
+            document.getElementById("overlay").onclick = function () {
+            }
         </script>
            
             <script>
@@ -949,5 +961,6 @@
             </script>
         
     </div>
+   
 </body>
 </html>

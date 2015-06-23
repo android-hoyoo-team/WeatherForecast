@@ -339,6 +339,10 @@
     border-right: 1px dashed white;
 }
 
+#dialogCon .ui-input-btn{
+    background-color:lightgray !important;
+}
+
 /*.main-box4-divider {
     width: 100%;
     height: 1px;
