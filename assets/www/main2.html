@@ -23,6 +23,7 @@
         loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
         loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
+        loadJsCssFileRelToLoadJs("../js/cordova.js", "js");
         //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
         $(function () {
 
@@ -509,8 +510,8 @@
         <div id="dialogCon" style="display:none">       
             <ul class="dialog-ul">
                 <li>
-                    <input type="button" value="拍照" id="photoBtn1" style="background-color:gray;"/>
-                    <input type="button" value="从照片中选择" id="photoBtn2"/>
+                    <input type="button" value="拍照" id="photoBtn1" style="background-color:gray;" />
+                    <input type="button" value="从照片中选择" id="photoBtn2"  />
                 </li>
             </ul>
         </div>
@@ -812,6 +813,61 @@
         </script>
 
         <script>
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value
+
+            // Wait for device API libraries to load
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // device APIs are available
+            //
+            function onDeviceReady() {
+                pictureSource = navigator.camera.PictureSourceType;
+                destinationType = navigator.camera.DestinationType;
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoDataSuccess(imageURI) {
+                alert(imageURI);
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoURISuccess(imageURI) {
+                alert(imageURI);
+            }
+
+            // A button will call this function
+            //
+            function capturePhoto() {
+                // Take picture using device camera and retrieve image as base64-encoded string
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+                    quality: 50,
+                    destinationType: destinationType.FILE_URI
+                });
+            }
+
+            // A button will call this function
+            //
+            function getPhoto(source) {
+                // Retrieve image file location from specified source
+                navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+                    quality: 50,
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    sourceType: source
+                });
+            }
+
+            // Called if something bad happens.
+            //
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+            function closeDialog() {
+                easyDialog.close();
+            }
             $(document).ready(function () {
    
                 // init Masonry
@@ -829,15 +885,35 @@
 				
                 //},1000);
             });
-            document.getElementById("cameraBtn").onclick = function () {
-                easyDialog.open({
-                    header: '请选择..',
-                    container: 'dialogCon',                   
-                    fixed:false
-                });
-            };
-            document.getElementById("overlay").onclick = function () {
-            }
+            var tag = 0;
+
+            document.getElementById("cameraBtn").addEventListener("click",function () {
+                    easyDialog.open({
+                        container: 'dialogCon',
+                        fixed: false
+                    });
+                    if (tag == 0) {
+                        tag++;
+                        document.getElementById("overlay").addEventListener("click", closeDialog, false);
+                        document.getElementById("photoBtn1").addEventListener("click", capturePhoto, false);
+                        document.getElementById("photoBtn1").addEventListener("click", closeDialog, false);
+                        document.getElementById("photoBtn2").addEventListener("click", function () { getPhoto(pictureSource.PHOTOLIBRARY); }, false);
+                        document.getElementById("photoBtn2").addEventListener("click", closeDialog, false);
+                    }
+                    
+                }, false);
+            //document.getElementById("cameraBtn").onclick = function () {
+            //    easyDialog.open({
+            //        container: 'dialogCon',                   
+            //        fixed:false
+            //    });
+            //    document.getElementById("overlay").addEventListener("click",closeDialog,false);
+            //    document.getElementById("photoBtn1").addEventListener("click", capturePhoto, false);
+            //    document.getElementById("photoBtn1").addEventListener("click", closeDialog, false);
+            //    document.getElementById("photoBtn2").addEventListener("click", function () { alert(hhh) }, false);
+            //    document.getElementById("photoBtn2").addEventListener("click", closeDialog, false);
+            //};
+            
         </script>
            
             <script>
