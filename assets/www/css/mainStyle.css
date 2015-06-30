@@ -197,6 +197,7 @@
     float:left;
 }
 #main .box4_grade .ui-block-d{
+    display:none;
     width:15%; 
     height:25px;
     background-image:url(../img/box4_current_ion.png); 
