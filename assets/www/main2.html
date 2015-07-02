@@ -214,10 +214,10 @@
                                     <h1 id="main_box2_position">磐安县</h1>
                                     <div class="ui-grid-b">
                                         <div class="ui-block-a">
-                                            <img id="main_box2_icon1" src="img/main_box2_icon1.png" />
+                                            <img id="main_box2_icon1" src="img/weather/NA.png" />
                                         </div>
                                         <div class="ui-block-b">
-                                            <img id="main_box2_icon2" src="img/main_box2_icon2.png" />
+                                            <img id="main_box2_icon2" src="img/weather/NA.png" />
                                         </div>
                                         <div class="ui-block-c">
                                             <p><span id="main_box2_weather">-----</span><br /><span id="main_box2_temp">---℃</span></p>
@@ -564,14 +564,26 @@
 						 }
 					});
 				}
-				if(!localhost_weather.wind_type)
+				if(!localhost_weather.wind_s_type)
 				{
 					$.ajax({
 						 type:"GET",
-						 url:globle_url+"/get_wind_type",
+						 url:globle_url+"/get_wind_s_type",
 						 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
 						 success:function(data){
-							localhost_weather.wind_type=data;
+							localhost_weather.wind_s_type=data;
+							store.set("localhost_weather",localhost_weather);
+						 }
+					});
+				}
+				if(!localhost_weather.wind_d_type)
+				{
+					$.ajax({
+						 type:"GET",
+						 url:globle_url+"/get_wind_d_type",
+						 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+						 success:function(data){
+							localhost_weather.wind_d_type=data;
 							store.set("localhost_weather",localhost_weather);
 						 }
 					});
@@ -651,9 +663,16 @@
 						var temp24H=parseFloat(res.temp24H).toFixed(0);
 						var temp24L=parseFloat(res.temp24L).toFixed(0);
 						var weaDesc24=res.weaDesc24;
+						var weaDesc48=res.weaDesc48;
+						var windD24=res.windD24;
+						var windD24_=localhost_weather.wind_d_type[windD24];
 						var weaDesc24_=localhost_weather.weather_desc_type[weaDesc24];
+						var weaDesc48_=localhost_weather.weather_desc_type[weaDesc48];
+						$("#main_box2_icon1").attr("src","img/weather/"+weaDesc24+weaDesc48_+".png");
+						$("#main_box2_icon2").attr("src","img/weather/"+weaDesc48+weaDesc48_+".png");
 						$("#main_box3_weather").html(weaDesc24_);
-						$("#main_box2_weather").html(weaDesc24_);
+						$("#main_box2_weather").html(weaDesc24_+"转"+weaDesc48_);
+						$("#main_box3_wind1").html(windD24_);
 						
 						$("#main_box2_temp").html(temp24L+"-"+temp24H+"℃");
 						
@@ -677,20 +696,20 @@
 						var pm25=parseFloat(res.pm25*10).toFixed(1);
 						csatGauge.setDataForId("dials_id", pm25);
 						$("#main_box5_quality1").html(pm25);
-						if(pm25<50)
-							$("#main_box5_quality2").html("优");
-						else if(pm25>=50&&pm25<100)
+						if(pm25<35)
+							$("#main_box5_quality2").html("一级优");
+						else if(pm25>=35&&pm25<75)
 						{
-							$("#main_box5_quality2").html("良");
+							$("#main_box5_quality2").html("二级良");
 						}
-						else if(pm25>=100&&pm25<150)
-							$("#main_box5_quality2").html("轻微污染");
-						else if(pm25>=150&&pm25<200)
-							$("#main_box5_quality2").html("中度污染");
-						else if(pm25>=200&&pm25<300)
-							$("#main_box5_quality2").html("污染");
-						else if(pm25>=300)
-							$("#main_box5_quality2").html("重度污染");
+						else if(pm25>=75&&pm25<115)
+							$("#main_box5_quality2").html("三级轻度污染");
+						else if(pm25>=115&&pm25<150)
+							$("#main_box5_quality2").html("四级中度污染");
+						else if(pm25>=150&&pm25<250)
+							$("#main_box5_quality2").html("五级重度污染");
+						else if(pm25>=250)
+							$("#main_box5_quality2").html("六级严重污染");
 						console.info(data);
 					 }
 						
@@ -937,36 +956,36 @@
                                 "color": [
                                    {
                                        "minValue": "0",
-                                       "maxValue": "50",
+                                       "maxValue": "35",
                                        "code": "#01E401",
                                        "borderColor": "#B1E253",
                                    },
                                    {
-                                       "minValue": "50",
-                                       "maxValue": "100",
+                                       "minValue": "35",
+                                       "maxValue": "75",
                                        "code": "#FEFE00",
                                        "borderColor": "#B1E253",
                                    },
                                    {
-                                       "minValue": "100",
+                                       "minValue": "75",
                                        "borderColor": "#B1E253",
-                                       "maxValue": "150",
+                                       "maxValue": "115",
                                        "code": "#FF7F00"
                                    },
                                    {
-                                       "minValue": "150",
-                                       "maxValue": "200",
+                                       "minValue": "115",
+                                       "maxValue": "150",
                                        "borderColor": "#B1E253",
                                        "code": "#FE0000"
                                    },
                                    {
-                                       "minValue": "200",
-                                       "maxValue": "300",
+                                       "minValue": "150",
+                                       "maxValue": "250",
                                        "borderColor": "#B1E253",
                                        "code": "#98004B"
                                    },
                                    {
-                                       "minValue": "300",
+                                       "minValue": "250",
                                        "maxValue": "500",
                                        "code": "#7E0123",
                                        "borderColor": "#B1E253",

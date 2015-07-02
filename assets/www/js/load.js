@@ -85,4 +85,5 @@ loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
 //store.js
  loadJsCssFileRelToLoadJs("store.js/store.js","js");
  loadJsCssFileRelToLoadJs("store.js/local_store.js","js");
-var globle_url="http://203.88.169.13:8081";
+//var globle_url="http://203.88.169.13:8081";
+var globle_url="http://10.41.87.82:9990";

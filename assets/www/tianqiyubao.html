@@ -29,6 +29,110 @@
             loadJsCssFileRelToLoadJs("../css/footStyle.css", "css");
             loadJsCssFileRelToLoadJs("../css/headerStyle.css", "css");
             loadJsCssFileRelToLoadJs("../css/tianqiyubaoStyle.css", "css");
+			var localhost_weather;
+			$(function(){
+				localhost_weather= store.get('localhost_weather');
+				
+				if(!localhost_weather.weather_desc_type)
+				{
+					$.ajax({
+						 type:"GET",
+						 url:globle_url+"/get_weather_desc_type",
+						 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+						 success:function(data){
+							localhost_weather.weather_desc_type=data;
+							store.set("localhost_weather",localhost_weather);
+						 }
+					});
+				}
+				if(!localhost_weather.wind_s_type)
+				{
+					$.ajax({
+						 type:"GET",
+						 url:globle_url+"/get_wind_s_type",
+						 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+						 success:function(data){
+							localhost_weather.wind_s_type=data;
+							store.set("localhost_weather",localhost_weather);
+						 }
+					});
+				}
+				if(!localhost_weather.wind_d_type)
+				{
+					$.ajax({
+						 type:"GET",
+						 url:globle_url+"/get_wind_d_type",
+						 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+						 success:function(data){
+							localhost_weather.wind_d_type=data;
+							store.set("localhost_weather",localhost_weather);
+						 }
+					});
+				}
+				$.ajax({
+                 type:"GET",
+                 url:globle_url+"/get_chinese_calendar",
+                 data:{},
+				 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+                 beforeSend:function(){
+                 },
+                 success:function(data){
+						console.info(data);
+						//2015-6-23 | 星期二 | [农历]乙未年五月初八 羊年 6日芒种 22日夏至
+						$("#b_currentDate").html(data.simple_gregorian_date+" 农历" +data.chinese_year+" "+data.chinese_month+data.chinese_date+" "+data.chinese_zodiac+"年 "+data.chinese_sectional_term_day+"日"+data.chinese_sectional_term_name +" "+data.chinese_principle_term_day+"日"+data.chinese_principle_term_name);
+                 },
+                 complete: function(XMLHttpRequest, textStatus){
+                 },
+                 error: function(){
+                 }         
+              });
+			});
+				$.ajax({
+                 type:"GET",
+                 url:globle_url+"/get_fcst_fine_city_by_stationnum",
+                 data:{longitude:120.4,latitude:29.0},
+				 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+                 success:function(data){
+					 if(data.status=="success")
+					 {
+						//var localhost_weather_data= store.get('localhost_weather').data;
+						var res=data.result[0];
+						var temp24H=parseFloat(res.temp24H).toFixed(0);
+						var temp24L=parseFloat(res.temp24L).toFixed(0);
+						var temp48H=parseFloat(res.temp48H).toFixed(0);
+						var temp48L=parseFloat(res.temp48L).toFixed(0);
+						var temp72H=parseFloat(res.temp72H).toFixed(0);
+						var temp72L=parseFloat(res.temp72L).toFixed(0);
+						var weaDesc24=res.weaDesc24;
+						var weaDesc48=res.weaDesc48;
+						var weaDesc72=res.weaDesc72;
+						var weaDesc96=res.weaDesc96;
+						var windD24=res.windD24;
+						var windD24_=localhost_weather.wind_d_type[windD24];
+						
+						var weaDesc24_=localhost_weather.weather_desc_type[weaDesc24];
+						var weaDesc48_=localhost_weather.weather_desc_type[weaDesc48];
+						var weaDesc72_=localhost_weather.weather_desc_type[weaDesc72];
+						var weaDesc96_=localhost_weather.weather_desc_type[weaDesc96];
+						$("#main_box3_weather").html(weaDesc24_);
+						
+						$("#main_box3_wind1").html(windD24_);
+						
+						$("#main_jin_t").html(temp24L+"-"+temp24H+"℃");
+						$("#main_ming_t").html(temp48L+"-"+temp48H+"℃");
+						$("#main_hou_t").html(temp72L+"-"+temp72H+"℃");
+						$("#main_jin_t_icon").attr("src","img/weather/"+weaDesc24+weaDesc24_+".png");
+						$("#main_ming_t_icon").attr("src","img/weather/"+weaDesc48+weaDesc48_+".png");
+						$("#main_hou_t_icon").attr("src","img/weather/"+weaDesc72+weaDesc72_+".png");
+						
+						$("#main_jin_t_w").html(weaDesc24_+"转"+weaDesc48_);
+						$("#main_ming_t_w").html(weaDesc48_+"转"+weaDesc72_);
+						$("#main_hou_t_w").html(weaDesc72_+"转"+weaDesc96_);
+					}
+				
+						
+                 }
+              });
         </script>
         <div data-role="header" id="headerBar" data-position="fixed">
             <div class="ui-grid-b">
@@ -43,7 +147,7 @@
             </div>
         </div>
         <div data-role="content" style="padding-left:5px;padding-right:5px;">
-            <div class="box1">
+            <div class="box1" id="b_currentDate">
                 <p>2015-04-09 星期四 乙未年 二月廿一 庚辰月 乙卯日</p>
             </div>
             <div class="sp-box">
@@ -54,21 +158,21 @@
                 <div class="sp-con ui-grid-b">
                     <div class="ui-block-a">
                         <span>今天</span>
-                        <span>15-23℃</span>
-                        <img src="img/weather_icon.png" />
-                        <span>多云转小雨</span>
+                        <span id="main_jin_t">15-23℃</span>
+                        <img id="main_jin_t_icon"  src="img/weather/NA.png" />
+                        <span id="main_jin_t_w">?转?</span>
                     </div>
                     <div class="ui-block-b">
                         <span>明天</span>
-                        <span>15-23℃</span>
-                        <img src="img/weather_icon.png" />
-                        <span>多云转小雨</span>
+                        <span id="main_ming_t">15-23℃</span>
+                        <img id="main_ming_t_icon" src="img/weather/NA.png" />
+                        <span id="main_ming_t_w">?转?</span>
                     </div>
                     <div class="ui-block-c">
                         <span>后天</span>
-                        <span>15-23℃</span>
-                        <img src="img/weather_icon.png" />
-                        <span>多云转小雨</span>
+                        <span id="main_hou_t">15-23℃</span>
+                        <img id="main_hou_t_icon" src="img/weather/NA.png" />
+                        <span id="main_hou_t_w">?转?</span>
                     </div>
                 </div>
             </div>
@@ -84,7 +188,7 @@
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather_icon.png" />
+                            <img src="img/weather/NA.png" />
                             <span>15-23℃</span>
                             <span>多云转小雨</span>
                         </div>
@@ -95,8 +199,8 @@
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather_icon.png" />
-                            <span>15-23℃</span>
+                            <img src="img/weather/NA.png" />
+                            <span>?-?℃</span>
                             <span>多云转小雨</span>
                         </div>
                     </div>
@@ -106,8 +210,8 @@
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather_icon.png" />
-                            <span>15-23℃</span>
+                            <img src="img/weather/NA.png" />
+                            <span>?-?℃</span>
                             <span>多云转小雨</span>
                         </div>
                     </div>
@@ -117,8 +221,8 @@
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather_icon.png" />
-                            <span>15-23℃</span>
+                            <img src="img/weather/NA.png" />
+                            <span>?-?℃</span>
                             <span>多云转小雨</span>
                         </div>
                     </div>
@@ -128,8 +232,8 @@
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather_icon.png" />
-                            <span>15-23℃</span>
+                            <img src="img/weather/NA.png" />
+                            <span>?-?℃</span>
                             <span>多云转小雨</span>
                         </div>
                     </div>
