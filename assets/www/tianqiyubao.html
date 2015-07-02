@@ -30,7 +30,7 @@
             loadJsCssFileRelToLoadJs("../css/headerStyle.css", "css");
             loadJsCssFileRelToLoadJs("../css/tianqiyubaoStyle.css", "css");
         </script>
-        <div data-role="header" id="headerBar" data-position="fixed">
+        <div data-role="header" id="headerBar">
             <div class="ui-grid-b">
                 <div class="ui-block-a">
                     <a href="#" data-inline="true" data-rel="back">
@@ -136,18 +136,28 @@
                 </div>
             </div>
         </div>
-        <div data-role="footer" data-position="fixed" id="footerMenu">
+        <div data-role="footer" data-position="fixed" id="footerMenu" data-fullscreen="true">
             <div data-role="navbar">
                 <ul>
                     <li>
-                        <a href="secondarymenu.html"><img src="img/main_btn01.png" /><br /><span>实况监测</span></a>
+                        <a id="skjcBtn"><img src="img/main_btn01.png" /><br /><span>实况监测</span></a>
                     </li>
                     <li>
-                        <a><img src="img/main_btn02.png" /><br /><span>天气预报</span></a>
+                        <a id="tqybBtn"><img src="img/main_btn02.png" /><br /><span>天气预报</span></a>
                     </li>
                 </ul>
             </div>
         </div>
+        <script>
+            $(function () {
+                $("#skjcBtn").click(function () {
+                    location="secondarymenu.html";
+                });
+                $("#tqybBtn").click(function () {
+                    location="tianqiyubao.html";
+                });
+            });
+        </script>
     </div>
 </body>
 </html>

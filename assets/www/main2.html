@@ -3,6 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="prerender" href="tianqiyubao.html" />
+    <link rel="prerender" href="secondarymenu.html" />
     <title></title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
    
@@ -28,6 +30,21 @@
         $(function () {
 
         })
+        //$(document).on("pagebeforeload", function () {
+        //    alert("pagebeforeload event fired - the external page is about to be loaded.");
+        //});
+        //$(document).on("pagebeforecreate", function () {
+        //    alert("pagebeforecreate");
+        //});
+        //$(document).on("pagebeforeshow", function () {
+        //    alert("pagebeforeshow");
+        //});
+        //$(document).on("pageinit", function () {
+        //    alert("pageinit");
+        //});
+        //$(document).on("pagechange", function () {
+        //    alert("pagechange");
+        //});
     </script>
     
 </head>
@@ -386,30 +403,11 @@
                                 <div class="box6">
                                     <h3>未来三天天气预报</h3>
                                     <div class="title-divider"></div>
-                                    <div class="box6_con" style="height:300px;">
+                                    <div class="box6_con" >
                                         <!--<img src="img/icon4_02.png" style="width:80%;height:auto;" />-->
-                                        <table class="box6-table" style="width:100%;text-align:center;">
-                                            <tr>
-                                                <td style="width:10%"></td>
-                                                <td>
-                                                    周日<br />
-                                                    13/5<br />
-                                                    下午<br />
-                                                    <img src="img/main_box2_icon1.png" />
-                                                </td>
-                                                <td>
-                                                    周一<br />
-                                                    14/5<br />
-                                                    上午<br />
-                                                    <img src="img/main_box2_icon1.png" />
-                                                </td>
-                                                <td>
-                                                    周一<br />
-                                                    14/5<br />
-                                                    下午<br />
-                                                    <img src="img/main_box2_icon1.png" />
-                                                </td>
-                                                <td>
+                                        <table class="box6-table" style="width:80%;text-align:center;margin:0 auto;">                                           
+                                            <!--<tr>                                                                                      
+                                                <td style="text-align:left;">
                                                     周二<br />
                                                     15/5<br />
                                                     上午<br />
@@ -421,53 +419,32 @@
                                                     下午<br />
                                                     <img src="img/main_box2_icon1.png" />
                                                 </td>
-                                                <td>
+                                                <td style="text-align:right;">
                                                     周三<br />
                                                     16/5<br />
                                                     上午<br />
                                                     <img src="img/main_box2_icon1.png" />
-                                                </td>
-                                                <td style="width:10%"></td>
+                                                </td>                                         
                                             </tr>
-                                            <tr>
-                                                <td colspan="8">
+                                            <tr>                                    
+                                                <td colspan="3">
                                                     <div id="chartContainer"></div>
-                                                </td>
+                                                </td>                                            
                                             </tr>
-                                            <tr>
-                                                <td style="width:10%"></td>
-                                                <td>
-                                                    <img src="img/main_box2_icon1.png" /><br />
-                                                    北风<br />
-                                                    微风<br />
-                                                </td>
-                                                <td>
-                                                    <img src="img/main_box2_icon1.png" /><br />
-                                                    北风<br />
-                                                    <2级<br />
-                                                </td>
-                                                <td>
-                                                    <img src="img/main_box2_icon1.png" /><br />
-                                                    东风<br />
-                                                    3-4级<br />
-                                                </td>
-                                                <td>
-                                                    <img src="img/main_box2_icon1.png" /><br />
+                                            <tr>                                                
+                                                <td style="text-align:left;">
                                                     东风<br />
                                                     1-2级<br />
                                                 </td>
-                                                <td>
-                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                <td>                                                
                                                     南风<br />
                                                     3级<br />
                                                 </td>
-                                                <td>
-                                                    <img src="img/main_box2_icon1.png" /><br />
+                                                <td style="text-align:right;">
                                                     西风<br />
                                                     微风<br />
-                                                </td>
-                                                <td style="width:10%"></td>
-                                            </tr>
+                                                </td> 
+                                            </tr>-->
 
                                         </table>
                                     </div>
@@ -499,10 +476,10 @@
             <div data-role="navbar">
                 <ul>
                     <li>
-                        <a href="secondarymenu.html"><img src="img/main_btn01.png" /><br /><span>实况监测</span></a>
+                        <a id="skjcBtn"><img src="img/main_btn01.png" /><br /><span>实况监测</span></a>
                     </li>
                     <li>
-                        <a href="tianqiyubao.html"><img src="img/main_btn02.png" /><br /><span>天气预报</span></a>
+                        <a id="tqybBtn"><img src="img/main_btn02.png" /><br /><span>天气预报</span></a>
                     </li>
                 </ul>
             </div>
@@ -515,183 +492,245 @@
                 </li>
             </ul>
         </div>
+        <script>
+            $(function () {
+                $("#skjcBtn").click(function () {
+                    location="secondarymenu.html";
+                });
+                $("#tqybBtn").click(function () {
+                    location="tianqiyubao.html";
+                });
+            });
+           
+        </script>
         
         <script>
             $(function () {
-                FusionCharts.ready(function () {
-                    //var width = screen.availWidth;
-                    var height = 120;
-                    var lineChart = new FusionCharts({
-                        events: {
-                            //entityClick: function (event, args) {
-                            //    console.log(args.label + 'clicked');
-                            //    alert(1);
-                            //},
-                            loaded: function () {
-                                var text = document.getElementsByTagName("tspan");
-                                for (var i = 0; i < text.length; i++) {
-                                    if (text[i].innerHTML == "FusionCharts XT Trial") {
-                                        text[i].style.display = "none";
-                                    }
-                                }
+                var weatherJson = {
+                    "imgs": {
+                        "img1": "img/main_box2_icon1.png",
+                        "img2": "img/main_box2_icon1.png",
+                        "img3": "img/main_box2_icon1.png"
+                    },
+                    "values": {
+                        "date1": [8, -9],
+                        "date2": [12,-2],
+                        "date3":[16,3]
+                    },
+                    "windDir": ["东风","西风","东南风"],
+                    "windPower": ["1-2级", "3级", "微风"]
+                };
+                function getWeek(num) {
+                    var weekday;
+                    switch (num) {
+                        case 0:
+                            weekday = "周日";
+                            break;
+                        case 1:
+                            weekday = "周一";
+                            break;
+                        case 2:
+                            weekday = "周二";
+                            break;
+                        case 3:
+                            weekday = "周三";
+                            break;
+                        case 4:
+                            weekday = "周四";
+                            break;
+                        case 5:
+                            weekday = "周五";
+                            break;
+                        case 6:
+                            weekday = "周六";
+                            break;
+                    }
+                    return weekday;
+                }
+                function getDateFormat(date) {
+                    return date.getDate() + "/" + (date.getMonth() + 1);
+                }
+                function initTable(weatherJson) {
+                    var Date0 = new Date();
+                    var Date1 = new Date();
+                    var Date2 = new Date();
+                    var Date3 = new Date();
+                    var _max = Math.max(weatherJson.values.date1[0], weatherJson.values.date2[0], weatherJson.values.date3[0]);
+                    var _min = Math.min(weatherJson.values.date1[1], weatherJson.values.date2[1], weatherJson.values.date3[1]);
+                    Date1.setDate(Date0.getDate() + 1);
+                    Date2.setDate(Date0.getDate() + 2);
+                    Date3.setDate(Date0.getDate() + 3);
+                    var tableHtml = "";
+                    tableHtml = "<tr><td style='text-align:left;'>" + getWeek(Date1.getDay()) + "</td><td>" + getWeek(Date2.getDay()) + "</td><td style='text-align:right;'>" + getWeek(Date3.getDay()) +
+                "</td></tr><tr><td style='text-align:left;'>" + getDateFormat(Date1) + "</td><td>" + getDateFormat(Date2) + "</td><td style='text-align:right;'>" + getDateFormat(Date3) +
+                "</td></tr><tr><td style='text-align:left;'><img src='" + weatherJson.imgs.img1 + "' /></td><td><img src='" + weatherJson.imgs.img2 + "' /></td><td style='text-align:right;'><img src='" + weatherJson.imgs.img3 +
+                "' /></td></tr><tr><td colspan='3'><div id='chartContainer'></div></td></tr>" +
+                "<tr><td style='text-align:left;'>" + weatherJson.windDir[0] + "</td><td>" + weatherJson.windDir[1] + "</td><td style='text-align:right;'>" + weatherJson.windDir[2] +
+                "</td></tr><tr><td style='text-align:left;'>" + weatherJson.windPower[0] + "</td><td>" + weatherJson.windPower[1] + "</td><td style='text-align:right;'>" + weatherJson.windPower[2] + "</td></tr>";
+                    $(".box6-table").html(tableHtml);
 
-                            },
-                            resized: function () {
-                                setTimeout(function () {
+                    FusionCharts.ready(function () {
+                        //var width = screen.availWidth;
+                        var height = 120;
+                        var lineChart = new FusionCharts({
+                            events: {
+                                //entityClick: function (event, args) {
+                                //    console.log(args.label + 'clicked');
+                                //    alert(1);
+                                //},
+                                loaded: function () {
                                     var text = document.getElementsByTagName("tspan");
                                     for (var i = 0; i < text.length; i++) {
                                         if (text[i].innerHTML == "FusionCharts XT Trial") {
                                             text[i].style.display = "none";
                                         }
                                     }
-                                }, 1);
-                            }
-                        },
-                        "type": "msline",
-                        "renderAt": "chartContainer",
-                        "width": "100%",
-                        "height": height,
-                        "dataFormat": "json",
-                        "dataSource": {
-                            "chart": {
-                                "bgAlpha": "0",
-                                "showValues": "1",
-                                "showBorder": "0",
-                                //"paletteColors": "#F6E639,#92D4F7",
-                                // "bgcolor": "#5c8aa0",
-                                "xAxisNamePadding": "50",
-                                "chartLeftMargin": "0",
-                                "chartRightMargin": "0",
-                                "chartTopMargin": "0",
-                                "chartBottomMargin": "0",
-                                //是否显示y轴刻度
-                                "showYAxisValues": "0",
-                                "showCanvasBorder": "0",
-                                "usePlotGradientColor": "0",
-                                //"legendBorderAlpha": "0",
-                                //"legendShadow": "0",
-                                "showAxisLines": "0",
-                                "showYAxisLines": "0",
-                                "showAlternateHGridColor": "0",
-                                "divlineThickness": "1",
-                                "divLineDashed": "0",
-                                "divLineDashLen": "0",
-                                "divLineGapLen": "0",
-                                "yAxisMaxValue": "30",
-                                "yAxisMinValue": "-10",
-                                "numVDivLines": "6",
-                                "divLineColor": "#5c8aa0",
-                                "divLineAlpha": "0",
-                                "vDivLineAlpha": "15",
-                                "vdivLineColor": "#ffffff",
-                                "showAlternateVGridColor": "0",
-                                //画布背景
-                                //"canvasBgColor":"#5c8aa0",
-                                // "canvasBgColor":"#000",
-                                "canvasBgAlpha": "0",
-                                "showLegend": "0",
-                                "baseFontColor": "#FFFFFF",
-                                "anchorRadius": "5",
-                                "showToolTip": "1",
-                                "numDivLines": "1",
-                                "toolTipColor": "#000000"
 
+                                },
+                                resized: function () {
+                                    setTimeout(function () {
+                                        var text = document.getElementsByTagName("tspan");
+                                        for (var i = 0; i < text.length; i++) {
+                                            if (text[i].innerHTML == "FusionCharts XT Trial") {
+                                                text[i].style.display = "none";
+                                            }
+                                        }
+                                    }, 1);
+                                }
                             },
-                            "categories": [
-                               {
+                            "type": "msline",
+                            "renderAt": "chartContainer",
+                            "width": "100%",
+                            "height": height,
+                            "dataFormat": "json",
+                            "dataSource": {
+                                "chart": {
+                                    "bgAlpha": "0",
+                                    "showValues": "1",
+                                    "showBorder": "0",
+                                    //"paletteColors": "#F6E639,#92D4F7",
+                                    // "bgcolor": "#5c8aa0",
+                                    "xAxisNamePadding": "50",
+                                    "chartLeftMargin": "0",
+                                    "chartRightMargin": "0",
+                                    "chartTopMargin": "0",
+                                    "chartBottomMargin": "0",
+                                    //是否显示y轴刻度
+                                    "showYAxisValues": "0",
+                                    "showCanvasBorder": "0",
+                                    "usePlotGradientColor": "0",
+                                    //"legendBorderAlpha": "0",
+                                    //"legendShadow": "0",
+                                    "showAxisLines": "0",
+                                    "showYAxisLines": "0",
+                                    "showAlternateHGridColor": "0",
+                                    "divlineThickness": "1",
+                                    "divLineDashed": "0",
+                                    "divLineDashLen": "0",
+                                    "divLineGapLen": "0",
+                                    "yAxisMaxValue": _max+8,
+                                    "yAxisMinValue": _min-8,
+                                    //"numVDivLines": "2",
+                                    "divLineColor": "#5c8aa0",
+                                    "divLineAlpha": "0",
+                                    "vDivLineAlpha": "15",
+                                    "vdivLineColor": "#ffffff",
+                                    "showAlternateVGridColor": "0",
 
-                                   "category": [
-                                      {},
-                                      {
-                                      },
-                                      {
-                                      },
-                                      {
-                                      },
-                                      {
-                                      },
-                                      {
-                                      },
-                                      {
-                                      },
-                                      {}
-                                   ]
-                               }
-                            ],
-                            "dataset": [
-                               {
-                                   //"seriesname": "Bakersfield Central",
-                                   "color": "#fe7506",
-                                   "valuePosition": "above",
-                                   "anchorBgColor": "#fe7506",
-                                   "baseFontColor": "#fe7506",
-                                   "data": [
-                                      {
-                                          "value": ""
-                                      },
-                                      {
-                                          "value": "1"
-                                      },
-                                      {
-                                          "value": "12",
-                                      },
-                                      {
-                                          "value": "16"
-                                      },
-                                      {
-                                          "value": "22"
-                                      },
-                                      {
-                                          "value": "19"
-                                      },
-                                      {
-                                          "value": "17"
-                                      },
-                                      {
-                                          "value": ""
-                                      }
-                                   ]
-                               },
-                               {
-                                   //"seriesname": "Los Angeles Topanga",
-                                   "color": "#95d44c",
-                                   "valuePosition": "below",
-                                   "anchorBgColor": "#95d44c",
-                                   "valueFontColor": "#95d44c",
-                                   "data": [
-                                      {
-                                          "value": ""
-                                      },
-                                      {
-                                          "value": "0"
-                                      },
-                                      {
-                                          "value": "-2"
-                                      },
-                                      {
-                                          "value": "3"
-                                      },
-                                      {
-                                          "value": "9"
-                                      },
-                                      {
-                                          "value": "1"
-                                      },
-                                      {
-                                          "value": "5"
-                                      },
-                                      {
-                                          "value": ""
-                                      },
-                                   ]
-                               }
-                            ]
+                                    //"adjustDiv": "1",
+                                    //"showDivLineValues":"1",//是否显示纵坐标刻度
+                                    //画布背景
+                                    //"canvasBgColor":"#5c8aa0",
+                                    // "canvasBgColor":"#000",
+                                    "canvasBgAlpha": "0",
+                                    "showLegend": "0",
+                                    "baseFontColor": "#FFFFFF",
+                                    "anchorRadius": "5",
+                                    "showToolTip": "1",
+                                    "numDivLines": "1",
+                                    "toolTipColor": "#000000"
 
-                        }
+                                },
+                                "categories": [
+                                   {
+
+                                       "category": [
+                                          {
+                                          },
+                                          {
+                                              "vline": "true",
+                                              "lineposition": "0",
+                                              "color": "#ffffff",
+                                              "alpha": "15"
+                                          },
+                                          {
+                                          },
+                                          {
+                                              "vline": "true",
+                                              "lineposition": "0",
+                                              "color": "#ffffff",
+                                              "alpha": "15"
+                                          },
+                                          {
+                                          },
+                                          {
+                                              "vline": "true",
+                                              "lineposition": "0",
+                                              "color": "#ffffff",
+                                              "alpha": "15"
+                                          }
+
+                                       ]
+                                   }
+                                ],
+                                "dataset": [
+                                   {
+                                       "color": "#fe7506",
+                                       "valuePosition": "above",
+                                       "anchorBgColor": "#fe7506",
+                                       "baseFontColor": "#fe7506",
+
+                                       "data": [
+                                          {
+                                              "value": weatherJson.values.date1[0],
+                                          },
+                                          {
+                                              "value": weatherJson.values.date2[0],
+                                          },
+                                          {
+                                              "value": weatherJson.values.date3[0]
+                                          }
+                                       ]
+                                   },
+                                   {
+                                       "color": "#95d44c",
+                                       "valuePosition": "below",
+                                       "anchorBgColor": "#95d44c",
+                                       "valueFontColor": "#95d44c",
+                                       "data": [
+                                          {
+                                              "value": weatherJson.values.date1[1]
+                                          },
+                                          {
+                                              "value": weatherJson.values.date2[1]
+                                          },
+                                          {
+                                              "value": weatherJson.values.date3[1]
+                                          }
+                                       ]
+                                   }
+                                ]
+
+                            }
+                        });
+                        lineChart.render();
+                        lineChart.setTransparent(true);
                     });
-                    lineChart.render();
-                    lineChart.setTransparent(true);
-                });
+                }
+                initTable(weatherJson);
+                
+           
+               
 
                 FusionCharts.ready(function () {
                     var csatGauge = new FusionCharts({
@@ -791,15 +830,16 @@
                                 "dial": [
                                    {
                                        "id": "value",
-                                       "value": "230",
+                                       "value": "93",
                                        "bgcolor": "#FFFFFF",
                                        "bordercolor": "#FFFFFF",
                                        "editMode": "0",
                                        //"radius": "250",
-                                       "basewidth": "20",
+                                       "basewidth": "8",
                                        "baseRadius": "100",
                                        //"topwidth": "1",
-                                       //"borderthickness": "2",
+                                       //"borderthickness": "2",                  
+                                     
                                    }
                                 ]
                             }
@@ -902,18 +942,6 @@
                     }
                     
                 }, false);
-            //document.getElementById("cameraBtn").onclick = function () {
-            //    easyDialog.open({
-            //        container: 'dialogCon',                   
-            //        fixed:false
-            //    });
-            //    document.getElementById("overlay").addEventListener("click",closeDialog,false);
-            //    document.getElementById("photoBtn1").addEventListener("click", capturePhoto, false);
-            //    document.getElementById("photoBtn1").addEventListener("click", closeDialog, false);
-            //    document.getElementById("photoBtn2").addEventListener("click", function () { alert(hhh) }, false);
-            //    document.getElementById("photoBtn2").addEventListener("click", closeDialog, false);
-            //};
-            
         </script>
            
             <script>

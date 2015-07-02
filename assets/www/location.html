@@ -5,48 +5,47 @@
     <title>Device Properties Example</title>
 
     <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">  
-      
-        // 等待加载PhoneGap  
-        document.addEventListener("deviceready", onDeviceReady, false);  
-          
-        // PhoneGap加载完毕  
-        function onDeviceReady() {  
-            navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        }  
-          
-        // 获取位置信息成功时调用的回调函数  
-        function onSuccess(position) {  
-            var element = document.getElementById('geolocation');
-          confirm('标题','您确认要跳转到内部页面吗？',function(btn){
-if (btn=='yes')
-{
-   alert('您点击了确认');
-   Ext.ComponentQuery.query('#myCard')[0].setActiveItem(1);
+    <script type="text/javascript" charset="utf-8">
 
-}else {
-    alert('您点击了取消')
- }
-},this);
-            element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
-                                'Longitude: '          + position.coords.longitude             + '<br />' +  
-                                'Altitude: '           + position.coords.altitude              + '<br />' +  
-                                'Accuracy: '           + position.coords.accuracy              + '<br />' +  
-                                'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +  
-                                'Heading: '            + position.coords.heading               + '<br />' +  
-                                'Speed: '              + position.coords.speed                 + '<br />' +  
-                                'Timestamp: '          + new Date(position.timestamp)          + '<br />';  
-        }  
-          
-        // onError回调函数接收一个PositionError对象  
-        function onError(error) {  
-            alert('code: '    + error.code    + '\n' +  
-                'message: ' + error.message + '\n');  
-        }  
-      
+        // 等待加载PhoneGap
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // PhoneGap加载完毕
+        function onDeviceReady() {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        // 获取位置信息成功时调用的回调函数
+        function onSuccess(position) {
+            var element = document.getElementById('geolocation');
+            confirm('标题', '您确认要跳转到内部页面吗？', function (btn) {
+                if (btn == 'yes') {
+                    alert('您点击了确认');
+                    Ext.ComponentQuery.query('#myCard')[0].setActiveItem(1);
+
+                } else {
+                    alert('您点击了取消')
+                }
+            }, this);
+            element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' +
+                                'Longitude: ' + position.coords.longitude + '<br />' +
+                                'Altitude: ' + position.coords.altitude + '<br />' +
+                                'Accuracy: ' + position.coords.accuracy + '<br />' +
+                                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                                'Heading: ' + position.coords.heading + '<br />' +
+                                'Speed: ' + position.coords.speed + '<br />' +
+                                'Timestamp: ' + new Date(position.timestamp) + '<br />';
+        }
+
+        // onError回调函数接收一个PositionError对象
+        function onError(error) {
+            alert('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+        }
+
     </script>
 </head>
 <body>
-<p id="geolocation">Finding geolocation...</p>
+    <p id="geolocation">Finding geolocation...</p>
 </body>
 </html>

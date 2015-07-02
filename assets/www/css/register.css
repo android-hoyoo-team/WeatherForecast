@@ -1,0 +1,40 @@
+﻿* {
+    color: white;
+    font-family: "微软雅黑";
+    text-shadow: none;
+    font-size: 12px;
+ 
+}
+#register{
+    background-image: url(../img/secondary_menu_bg.png);
+}
+#register .register-form label{
+    color:#6f6f6f;
+}
+#register .ui-input-text{
+    margin-bottom:15px;
+}
+#register .ui-input-text input{
+    height:33px;
+}
+#register .ui-btn{
+    height:38px;
+    padding:0px;
+    line-height:38px;
+    border-radius:2px;
+    color:white;
+    box-shadow:none;
+    border:none;
+    text-shadow:none;
+}
+#confirmRegister{
+    background-image:url(../img/confirm_register.png);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+#cancleRegister{
+    background-image:url(../img/cancle_register.png);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+

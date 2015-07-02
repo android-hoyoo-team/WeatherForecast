@@ -6,6 +6,9 @@
     background-image: url(../img/secondary_menu_bg.png);
     background-repeat:repeat;
 }
+#secondaryMenuContent ul{
+    margin:0px;
+}
 #secondaryMenuContent ul a{
     background:none;
     background-color:white;

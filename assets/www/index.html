@@ -22,7 +22,14 @@
         loadJsCssFileRelToLoadJs("../js/imagesloaded.js", "js");
         $(function () {
             $("#loginBtn").click(function () {
-                location = "main2.html"
+                //location = "loadmain.html"
+                $("body").html("<img style='width:100%;height:100%;position:absolute;' src='img/pubuliu/4.jpg'/>");
+                setTimeout(function () {
+                    location = "main2.html";
+                }, 3000);
+            });
+            $("#registerBtn").click(function () {
+                location = "zhuce.html";
             });
         })
         $(document).bind("mobileinit", function () {
@@ -57,7 +64,7 @@
                     <input id="pwdInput" type="password" placeholder="密码" />
                 </div>
                 <div class="login-box">
-                    <a data-role="button" data-transition="pop" id="loginBtn">登录</a>
+                    <a data-role="button" id="loginBtn">登录</a>
                 </div>
                 <div class="register-box">
                     <a data-role="button" id="registerBtn">注册</a>
