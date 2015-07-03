@@ -222,8 +222,7 @@
                                 
                                             <img id="main_box2_icon2" src="img/weather/NA.png" />
                                         </div>
-                                        <div class="ui-block-c">
-                                       
+                                        <div class="ui-block-c">                                       
                                             <p><span id="main_box2_weather">-----</span><br /><span id="main_box2_temp">---℃</span></p>
                                         </div>
                                     </div>
@@ -233,24 +232,94 @@
                                     <div class="title-divider"></div>
                                     <div class="ui-grid-a box3_con">
                                         <div class="ui-block-a block1">
-                                            <img id="main_box3_icon1" src="img\main_box3_icon1.png" />
+                                            <img id="main_box3_icon1" src="img\main_box3_icon1.png"/>
                                         </div>
                                         <div class="ui-block-b block2">
                                             <p id="main_box3_weather">晴</p>
                                             <div class="main-box3-divider"></div>
                                             <div class="ui-grid-b  box3-current-detail">
                                                 <div class="ui-block-a">
-                                                    <p id="main_box3_wind1">北风</p>
-                                                    <p id="main_box3_wind2">3级</p>
+                                                    <p id="main_box3_wind1">----</p>
+                                                    <p id="main_box3_temp1">相对湿度</p>
+                                                    <p>负氧离子</p>
+                                                    <p>PM2.5</p>
                                                 </div>
                                                 <div class="ui-block-b">
-                                               
-                                                    <p id="main_box3_temp1">相对湿度</p>
+                                                    <p id="main_box3_wind2">----</p>                                                    
                                                     <p id="main_box3_temp2">--%</p>
+                                                    <p id="main_box3_ion">20000</p>
+                                                    <p id="main_box3_pm25">----</p>
                                                 </div>
                                                 <div class="ui-block-c">
-                                                    <img id="main_box3_icon2" src="img\main_box3_icon2.png" />
+                                                    <img id="main_box3_icon2" src="img\main_box3_icon2.png" style="margin-top:30px;"/>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                           
+                                <div class="box6">
+                                    <h3>未来三天天气预报</h3>
+                                    <div class="title-divider"></div>
+                                    
+                                    <div class="box6_con" >
+                                    
+                                        
+                                        <table class="box6-table" style="width:80%;text-align:center;margin:0 auto;">                                           
+                                           <!--<tr>                                                                                      
+                                                <td style="text-align:left;">
+                                                    周二<br />
+                                                    15/5<br />
+                                                    上午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td>
+                                                    周二<br />
+                                                    15/5<br />
+                                                    下午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    周三<br />
+                                                    16/5<br />
+                                                    上午<br />
+                                                    <img src="img/main_box2_icon1.png" />
+                                                </td>                                         
+                                            </tr>
+                                            <tr>                                    
+                                                <td colspan="3">
+                                                    <div id="chartContainer"></div>
+                                                </td>                                            
+                                            </tr>
+                                            <tr>                                                
+                                                <td style="text-align:left;">
+                                                    东风<br />
+                                                    1-2级<br />
+                                                </td>
+                                                <td>                                                
+                                                    南风<br />
+                                                    3级<br />
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    西风<br />
+                                                    微风<br />
+                                                </td> 
+                                            </tr>-->
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="box7">
+                                    <h3>旅游指数</h3>
+                                    <div class="title-divider"></div>
+                                    <div class="box7_con">
+                                        <div class="ui-grid-a">
+                                            <div class="ui-block-a">
+                                                <img src="img/icon5_05.png" />
+                                                <p>舒适度指数<br /><span>较舒适</span></p>
+                                            </div>
+                                            <div class="ui-block-b">
+                                                <img src="img/icon5_07.png" />
+                                                <p>空气清新指数<br /><span>中等</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -375,11 +444,11 @@
                                         <div class="title-divider"></div>
                                         <div class="ui-grid-b">
                                             <div class="ui-block-a" style="height:100px;">
-                                               
+
                                                 <div id="chartContainer2"></div>
                                             </div>
                                             <div class="ui-block-c">
-                                           
+
                                                 <p id="main_box5_quality1">0</p>
                                                 <p id="main_box5_quality2">良</p>
                                             </div>
@@ -387,73 +456,6 @@
                                         <p id="main_box5_tip">
                                             温馨提示：空气质量可接受，但某些污染物可能对极少数异常敏感人群健康有较弱影响。
                                         </p>
-                                    </div>
-                                </div>
-                                <div class="box6">
-                                    <h3>未来三天天气预报</h3>
-                                    <div class="title-divider"></div>
-                                    
-                                    <div class="box6_con" >
-                                    
-                                        
-                                        <table class="box6-table" style="width:80%;text-align:center;margin:0 auto;">                                           
-                                           <!--<tr>                                                                                      
-                                                <td style="text-align:left;">
-                                                    周二<br />
-                                                    15/5<br />
-                                                    上午<br />
-                                                    <img src="img/main_box2_icon1.png" />
-                                                </td>
-                                                <td>
-                                                    周二<br />
-                                                    15/5<br />
-                                                    下午<br />
-                                                    <img src="img/main_box2_icon1.png" />
-                                                </td>
-                                                <td style="text-align:right;">
-                                                    周三<br />
-                                                    16/5<br />
-                                                    上午<br />
-                                                    <img src="img/main_box2_icon1.png" />
-                                                </td>                                         
-                                            </tr>
-                                            <tr>                                    
-                                                <td colspan="3">
-                                                    <div id="chartContainer"></div>
-                                                </td>                                            
-                                            </tr>
-                                            <tr>                                                
-                                                <td style="text-align:left;">
-                                                    东风<br />
-                                                    1-2级<br />
-                                                </td>
-                                                <td>                                                
-                                                    南风<br />
-                                                    3级<br />
-                                                </td>
-                                                <td style="text-align:right;">
-                                                    西风<br />
-                                                    微风<br />
-                                                </td> 
-                                            </tr>-->
-
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="box7">
-                                    <h3>旅游指数</h3>
-                                    <div class="title-divider"></div>
-                                    <div class="box7_con">
-                                        <div class="ui-grid-a">
-                                            <div class="ui-block-a">
-                                                <img src="img/icon5_05.png" />
-                                                <p>舒适度指数<br /><span>较舒适</span></p>
-                                            </div>
-                                            <div class="ui-block-b">
-                                                <img src="img/icon5_07.png" />
-                                                <p>空气清新指数<br /><span>中等</span></p>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -673,10 +675,15 @@
                  success:function(data){
 					 if(data.status=="success")
 					 {
-						var res=data.result;
-						var pm25=parseFloat(res.pm25*10).toFixed(1);
-						csatGauge.setDataForId("dials_id", pm25);
-						$("#main_box5_quality1").html(pm25);
+					     var res = data.result;
+					     
+					     var pm25 = parseFloat(res.pm25 * 10).toFixed(1);
+					     // console.info("xxxxxxxxxx:"+pm25);
+					     setTimeout(function () {
+						    csatGauge.setDataForId("dials_id", pm25);
+					     },500);
+					     $("#main_box5_quality1").html(pm25);
+					     $("#main_box3_pm25").html(pm25);
 						if(pm25<35)
 							$("#main_box5_quality2").html("一级优");
 						else if(pm25>=35&&pm25<75)
@@ -966,29 +973,29 @@
                             "chart": {
                                 "bgAlpha": "0",
                                 "lowerLimit": "0",
-                                "upperLimit": "500",
+                                "upperLimit": "200",
                                 "theme": "fint",
                                 "showLegend": "0",
                                 "majorTMColor": "#B1E253",
-                                "minortmnumber": "1",
-                                "majortmnumber": "10",
+                                //"minortmnumber": "1",
+                                "majortmnumber": "20",
                                 "majorTMThickness": "1",
                                 "showLimits": "1",
                                 "showTickValues": "1",
                                 "autoAlignTickValues": "1",
+                                "autoscale":"0",
                                 //"bgColor": "#B1E253"
                                 //刻度值距离表盘的距离
-                                //"tickValueDistance":"50"
+                                //"tickValueDistance":"10",
                                 //每隔多少步长显示刻度值
-                                //"tickValueStep":"2"
+                                //"tickValueStep":"2",
                                 //"lowerLimitDisplay":"min",
                                 //"placeTicksInside":"1",
                             },
                             "colorRange": {
                                 "color": [
                                    {
-                                       "minValue": "0",
-                                       
+                                       "minValue": "0",                                     
                                        "maxValue": "35",
                                        "code": "#01E401",
                                        "borderColor": "#B1E253",
@@ -1003,32 +1010,23 @@
                                    {
                                        
                                        "minValue": "75",
-                                       "borderColor": "#B1E253",
-                                      
+                                       "borderColor": "#B1E253",                                      
                                        "maxValue": "115",
                                        "code": "#FF7F00"
                                    },
-                                   {
-                                      
+                                   {                       
                                        "minValue": "115",
                                        "maxValue": "150",
                                        "borderColor": "#B1E253",
                                        "code": "#FE0000"
                                    },
                                    {
-                                      
                                        "minValue": "150",
-                                       "maxValue": "250",
+                                       "maxValue": "200",
                                        "borderColor": "#B1E253",
                                        "code": "#98004B"
                                    },
-                                   {
-                                 
-                                       "minValue": "250",
-                                       "maxValue": "500",
-                                       "code": "#7E0123",
-                                       "borderColor": "#B1E253",
-                                   }
+                                   
                                 ]
                             },
                             "dials": {
@@ -1039,14 +1037,11 @@
                                        "bgcolor": "#FFFFFF",
                                        "bordercolor": "#FFFFFF",
                                        "editMode": "0",
-                                       //"radius": "250",
-                               
+                                       //"radius": "250",                             
                                        "basewidth": "8",
                                        "baseRadius": "100",
-                                       //"topwidth": "1",
-                                      
+                                       //"topwidth": "1",                               
                                        //"borderthickness": "2",                  
-                                     
                                    }
                                 ]
                             }
