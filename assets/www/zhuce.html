@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <script src="js/load.js"></script>
+    <script type="text/javascript">
+        loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
+        loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
+        loadJsCssFileRelToLoadJs("../css/headerStyle.css", "css");
+        loadJsCssFileRelToLoadJs("../css/register.css", "css");
+    </script>
+</head>
+<body>
+    <div data-role="page" id="register">
+        <div data-role="header" id="headerBar">
+            <div class="ui-grid-b">
+                <div class="ui-block-a">
+                    <a href="#" data-inline="true" data-rel="back">
+                        <img src="img/action_bar_button.png" ismap />
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <h4>注册</h4>
+                </div>
+            </div>
+        </div>
+        <div data-role="content">
+            <form class="register-form">
+                <label for="username">请输入用户名：</label>
+                <input type="text" name="username"/>
+                <label for="password">请输入密码：</label>
+                <input name="password" type="password"/>
+                <label for="password2">请再次输入密码：</label>
+                <input type="password" name="password2"/>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a data-role="button" id="confirmRegister">确认注册</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a data-role="button" id="cancleRegister">取消注册</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>
