@@ -75,7 +75,7 @@
 
 
             .swiper-container-con1 .swiper-slide {
-         
+
                 font-size: 18px;
                 color: black;
                 width: 100% !important;
@@ -95,7 +95,6 @@
                     <div class="swiper-container swiper-container-con1">
                         <div class="swiper-wrapper">
                             <!--<div id="hhh" class="swiper-slide" style="padding:3px;text-align:center;">
-
                                 
                                 <div id="photo_wall" class="photo-wall">
                                     <div class="photo-wall-item">
@@ -545,12 +544,17 @@
             <ul class="dialog-ul">
                 <li>
                     <input type="button" value="拍照" id="photoBtn1" style="background-color:gray;" />
-                    <input type="button" value="从照片中选择" id="photoBtn2" />
+
+					<input id="image_src" type="file"  name="upfile" contentEditable="false" accept="image/*" style="width:448px; height: 22px;display:none" onchange="ajaxFileUpload()"/></input>
+                    <input type="button" value="从照片中选择" onclick="image_src.click()" id="photoBtn2"  />
                 </li>
             </ul>
         </div>
         <script>
             $(function () {
+				var localhost_weather= store.get('localhost_weather');
+				localhost_weather.user_info.auto_login=false;
+				store.set("localhost_weather",localhost_weather);
                 $("#skjcBtn").click(function () {
                     location = "secondarymenu.html";
                 });
@@ -563,6 +567,8 @@
 
         <script>
             function showCurrentIns(value) {
+			if(value>2000)
+				value=1909;
                 var flag;
                 var array = $(".ui-block-d");
                 if (value > 2000) {
@@ -619,6 +625,7 @@
                         }
                     });
                 }
+
                 if (!localhost_weather.wind_d_type) {
                     $.ajax({
                         type: "GET",
@@ -699,20 +706,56 @@
                             var res = data.result[0];
                             var temp24H = parseFloat(res.temp24H).toFixed(0);
                             var temp24L = parseFloat(res.temp24L).toFixed(0);
+						var temp48H=parseFloat(res.temp48H).toFixed(0);
+						var temp48L=parseFloat(res.temp48L).toFixed(0);
+						var temp72H=parseFloat(res.temp72H).toFixed(0);
+						var temp72L=parseFloat(res.temp72L).toFixed(0);
                             var weaDesc24 = res.weaDesc24;
                             var weaDesc48 = res.weaDesc48;
+						var weaDesc72=res.weaDesc72;
                             var windD24 = res.windD24;
+						var windD48=res.windD48;
+						var windD72=res.windD72;
+						var windS24=res.windS24;
+						var windS48=res.windS48;
+						var windS72=res.windS72;
+						var windS24_=localhost_weather.wind_s_type[windS24];
+						var windS48_=localhost_weather.wind_s_type[windS48];
+						var windS72_=localhost_weather.wind_s_type[windS72];
+						
                             var windD24_ = localhost_weather.wind_d_type[windD24];
+						var windD48_=localhost_weather.wind_d_type[windD48];
+						var windD72_=localhost_weather.wind_d_type[windD72];
                             var weaDesc24_ = localhost_weather.weather_desc_type[weaDesc24];
                             var weaDesc48_ = localhost_weather.weather_desc_type[weaDesc48];
+						var weaDesc72_=localhost_weather.weather_desc_type[weaDesc72];
                             $("#main_box2_icon1").attr("src", "img/weather/" + weaDesc24 + ".png");
                             $("#main_box2_icon2").attr("src", "img/weather/" + weaDesc48 + ".png");
                             $("#main_box3_weather").html(weaDesc24_);
-                            $("#main_box2_weather").html(weaDesc24_ + "转" + weaDesc48_);
+						if(weaDesc24_==weaDesc48_)
+						{
+							$("#main_box2_weather").html(weaDesc24_);
+						}
+						else
+                            $("#main_box2_weather").html(weaDesc24_ +"转" + weaDesc48_);
                             $("#main_box3_wind1").html(windD24_);
 
                             $("#main_box2_temp").html(temp24L + "-" + temp24H + "℃");
-
+						 var weatherJson = {
+							"imgs": {
+								"img1": "img/weather/"+weaDesc24+".png",
+								"img2": "img/weather/"+weaDesc48+".png",
+								"img3": "img/weather/"+weaDesc72+".png"
+							},
+							"values": {
+								"date1": [temp24H, temp24L],
+								"date2": [temp48H,temp48L],
+								"date3":[temp72H,temp72L]
+							},
+							"windDir": [windD24_,windD48_,windD72_],
+							"windPower": [windS24_, windS48_, windS72_]
+						};
+						initTable(weatherJson);
                         }
 
 
@@ -731,6 +774,8 @@
                             var res = data.result;
 
                             var pm25 = parseFloat(res.pm25 * 10).toFixed(1);
+						 if(pm25>200)
+							pm25=200;
                             // console.info("xxxxxxxxxx:"+pm25);
                             setTimeout(function () {
                                 csatGauge.setDataForId("dials_id", pm25);
@@ -762,7 +807,6 @@
                 });
             });
             var csatGauge;
-            $(function () {
                 var weatherJson = {
                     "imgs": {
                         "img1": "img/main_box2_icon1.png",
@@ -984,11 +1028,11 @@
                         lineChart.setTransparent(true);
                     });
                 }
-                initTable(weatherJson);
 
+            $(function () {
+               // initTable(weatherJson);
 
-
-
+				
                 FusionCharts.ready(function () {
                     csatGauge = new FusionCharts({
                         events: {
@@ -1033,6 +1077,7 @@
                                 "majortmnumber": "20",
                                 "majorTMThickness": "1",
                                 "showLimits": "1",
+
                                 //"showTickValues": "1",
                                 //"autoAlignTickValues": "1",
                                 "autoscale": "0",
@@ -1162,6 +1207,7 @@
             function closeDialog() {
                 easyDialog.close();
             }          
+
             var tag = 0;
 
             document.getElementById("cameraBtn").addEventListener("click", function () {
@@ -1174,11 +1220,27 @@
                     document.getElementById("overlay").addEventListener("click", closeDialog, false);
                     document.getElementById("photoBtn1").addEventListener("click", capturePhoto, false);
                     document.getElementById("photoBtn1").addEventListener("click", closeDialog, false);
-                    document.getElementById("photoBtn2").addEventListener("click", function () { getPhoto(pictureSource.PHOTOLIBRARY); }, false);
+
+                        document.getElementById("photoBtn2").addEventListener("click", function () { //getPhoto(pictureSource.PHOTOLIBRARY); 
+						}, false);
                     document.getElementById("photoBtn2").addEventListener("click", closeDialog, false);
                 }
 
             }, false);
+				function ajaxFileUpload() {
+
+					$.ajaxFileUpload({
+						url : globle_url+"/file_upload",
+						secureuri : false,
+						fileElementId : 'image_src',
+						dataType : 'json',
+						success : function(data) {
+		//						$("#text").show();
+								console.info(data);
+							//update("/ueditor/"+data.url);
+						}
+					});
+				}
         </script>
 
         <script>
@@ -1205,6 +1267,7 @@
                     touchAngle: 45,//允许翻页的角度范围
                     simulateTouch: true,//是否通过鼠标的drag和点击事件来模拟 touch事件（主要是电脑浏览器上没有touch事件），如果为false则电脑浏览器不具备翻页效果
                     followFinger: true,//设置翻页效果是否跟随手势
+
                     onInit: function (swiper) {
                         swiperCon2 = new Swiper('.swiper-container-con2', {
                             scrollbar: '.swiper-scrollbar2',
@@ -1239,7 +1302,9 @@
                         }, 100);
                     },
                 });
+
                 swiperCon1 = new Swiper('.swiper-container-con1', {
+
                     //slidesPerView: 3,
                     centeredSlides: true,
                     //paginationClickable: true,
@@ -1259,6 +1324,7 @@
                             addToSwiper(queryImg,pos,6,swiper);
                         }
                     },
+
                     onInit: function (swiper) {
                         var num = imgData.data.length;
                         var swiperHtml = "";
@@ -1380,6 +1446,7 @@
                 //    //});
                 //    // alert(100);
                 //    setTimeout(function () {
+
 
                 //    }, 5000);
 
