@@ -21,17 +21,69 @@
         loadJsCssFileRelToLoadJs("../js/masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("../js/imagesloaded.js", "js");
         $(function () {
+			var localhost_weather= store.get('localhost_weather');
+			localhost_weather.user_info=localhost_weather.user_info||{};
+			if(localhost_weather.user_info.name)
+			{
+				$("#name").val(localhost_weather.user_info.name);
+			}
+			if(localhost_weather.user_info.auto_login)
+			{
+				login_();
+			}
             $("#loginBtn").click(function () {
                 //location = "loadmain.html"
-                $("body").html("<img style='width:100%;height:100%;position:absolute;' src='img/pubuliu/4.jpg'/>");
-                setTimeout(function () {
-                    location = "main2.html";
-                }, 3000);
+               
+				var name=$("#name").val();
+				var password=$("#password").val();
+				if(name==null||name.length<=0)
+				{
+					alert("用户名不能为空");
+					return;
+				}
+				if(password==null||password.length<=0)
+				{
+					alert("密码不能为空");
+					return;
+				}
+				$.ajax({
+					 type:"GET",
+					 url:globle_url+"/login",
+					 data:{name:name,password:password},
+					 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+					 beforeSend:function(){
+					 },
+					 success:function(data){
+						if(data&&data.status=="success")
+						{
+						    var value = document.getElementById("checkValue").innerHTML;
+							localhost_weather.user_info.name=name;
+							if (value == "true") {
+								localhost_weather.user_info.auto_login=true;
+							}
+							store.set("localhost_weather",localhost_weather);
+							login_();
+						}
+						else
+						{
+							alert(data.message);
+						}
+					 }
+				});
+
             });
             $("#registerBtn").click(function () {
-                location = "zhuce.html";
+                //location = "zhuce.html";
+				 location = "test.html";
             });
         })
+		function login_()
+		{
+			$("body").html("<img style='width:100%;height:100%;position:absolute;' src='img/pubuliu/4.jpg'/>");
+			setTimeout(function () {
+				location = "main2.html";
+			}, 3000);
+		}
         $(document).bind("mobileinit", function () {
             $.extend($.mobile, {
                 defaultPageTransition: 'none',
@@ -58,13 +110,13 @@
             </div>
             <form method="post" action="" id="login_form">                             
                 <div class="user">
-                    <input id="userInput" placeholder="用户名" />
+                    <input id="name" placeholder="用户名" />
                 </div>
                 <div class="pwd">
-                    <input id="pwdInput" type="password" placeholder="密码" />
+                    <input id="password" type="password" placeholder="密码" />
                 </div>
                 <div class="login-box">
-                    <a data-role="button" id="loginBtn">登录</a>
+                    <a data-role="button" id="loginBtn" >登录</a>
                 </div>
                 <div class="register-box">
                     <a data-role="button" id="registerBtn">注册</a>

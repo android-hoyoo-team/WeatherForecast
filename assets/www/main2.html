@@ -483,12 +483,16 @@
             <ul class="dialog-ul">
                 <li>
                     <input type="button" value="拍照" id="photoBtn1" style="background-color:gray;" />
-                    <input type="button" value="从照片中选择" id="photoBtn2"  />
+					<input id="image_src" type="file"  name="upfile" contentEditable="false" accept="image/*" style="width:448px; height: 22px;display:none" onchange="ajaxFileUpload()"/></input>
+                    <input type="button" value="从照片中选择" onclick="image_src.click()" id="photoBtn2"  />
                 </li>
             </ul>
         </div>
         <script>
             $(function () {
+				var localhost_weather= store.get('localhost_weather');
+				localhost_weather.user_info.auto_login=false;
+				store.set("localhost_weather",localhost_weather);
                 $("#skjcBtn").click(function () {
                     location="secondarymenu.html";
                 });
@@ -501,6 +505,8 @@
         
         <script>
 		function showCurrentIns(value) {
+			if(value>2000)
+				value=1909;
             var flag;
             var array = $(".ui-block-d");
             if (value > 2000) {
@@ -645,20 +651,56 @@
 						var res=data.result[0];
 						var temp24H=parseFloat(res.temp24H).toFixed(0);
 						var temp24L=parseFloat(res.temp24L).toFixed(0);
+						var temp48H=parseFloat(res.temp48H).toFixed(0);
+						var temp48L=parseFloat(res.temp48L).toFixed(0);
+						var temp72H=parseFloat(res.temp72H).toFixed(0);
+						var temp72L=parseFloat(res.temp72L).toFixed(0);
 						var weaDesc24=res.weaDesc24;
 						var weaDesc48=res.weaDesc48;
+						var weaDesc72=res.weaDesc72;
 						var windD24=res.windD24;
+						var windD48=res.windD48;
+						var windD72=res.windD72;
+						var windS24=res.windS24;
+						var windS48=res.windS48;
+						var windS72=res.windS72;
+						var windS24_=localhost_weather.wind_s_type[windS24];
+						var windS48_=localhost_weather.wind_s_type[windS48];
+						var windS72_=localhost_weather.wind_s_type[windS72];
+						
 						var windD24_=localhost_weather.wind_d_type[windD24];
+						var windD48_=localhost_weather.wind_d_type[windD48];
+						var windD72_=localhost_weather.wind_d_type[windD72];
 						var weaDesc24_=localhost_weather.weather_desc_type[weaDesc24];
 						var weaDesc48_=localhost_weather.weather_desc_type[weaDesc48];
+						var weaDesc72_=localhost_weather.weather_desc_type[weaDesc72];
 						$("#main_box2_icon1").attr("src","img/weather/"+weaDesc24+".png");
 						$("#main_box2_icon2").attr("src","img/weather/"+weaDesc48+".png");
 						$("#main_box3_weather").html(weaDesc24_);
-						$("#main_box2_weather").html(weaDesc24_+"转"+weaDesc48_);
+						if(weaDesc24_==weaDesc48_)
+						{
+							$("#main_box2_weather").html(weaDesc24_);
+						}
+						else
+							$("#main_box2_weather").html(weaDesc24_+"转"+weaDesc48_);
 						$("#main_box3_wind1").html(windD24_);
 						
 						$("#main_box2_temp").html(temp24L+"-"+temp24H+"℃");
-						
+						 var weatherJson = {
+							"imgs": {
+								"img1": "img/weather/"+weaDesc24+".png",
+								"img2": "img/weather/"+weaDesc48+".png",
+								"img3": "img/weather/"+weaDesc72+".png"
+							},
+							"values": {
+								"date1": [temp24H, temp24L],
+								"date2": [temp48H,temp48L],
+								"date3":[temp72H,temp72L]
+							},
+							"windDir": [windD24_,windD48_,windD72_],
+							"windPower": [windS24_, windS48_, windS72_]
+						};
+						initTable(weatherJson);
 					}
 				
 						
@@ -678,6 +720,8 @@
 					     var res = data.result;
 					     
 					     var pm25 = parseFloat(res.pm25 * 10).toFixed(1);
+						 if(pm25>200)
+							pm25=200;
 					     // console.info("xxxxxxxxxx:"+pm25);
 					     setTimeout(function () {
 						    csatGauge.setDataForId("dials_id", pm25);
@@ -710,8 +754,7 @@
               });
 			});
 			 var csatGauge ;
-            $(function () {
-                var weatherJson = {
+			 var weatherJson = {
                     "imgs": {
                         "img1": "img/main_box2_icon1.png",
                         "img2": "img/main_box2_icon1.png",
@@ -932,8 +975,10 @@
                         lineChart.setTransparent(true);
                     });
                 }
-                initTable(weatherJson);
+
+            $(function () {
                 
+               // initTable(weatherJson);
            
                
 				
@@ -1139,11 +1184,26 @@
                         document.getElementById("overlay").addEventListener("click", closeDialog, false);
                         document.getElementById("photoBtn1").addEventListener("click", capturePhoto, false);
                         document.getElementById("photoBtn1").addEventListener("click", closeDialog, false);
-                        document.getElementById("photoBtn2").addEventListener("click", function () { getPhoto(pictureSource.PHOTOLIBRARY); }, false);
+                        document.getElementById("photoBtn2").addEventListener("click", function () { //getPhoto(pictureSource.PHOTOLIBRARY); 
+						}, false);
                         document.getElementById("photoBtn2").addEventListener("click", closeDialog, false);
                     }
                     
                 }, false);
+				function ajaxFileUpload() {
+
+					$.ajaxFileUpload({
+						url : globle_url+"/file_upload",
+						secureuri : false,
+						fileElementId : 'image_src',
+						dataType : 'json',
+						success : function(data) {
+		//						$("#text").show();
+								console.info(data);
+							//update("/ueditor/"+data.url);
+						}
+					});
+				}
         </script>
            
             <script>

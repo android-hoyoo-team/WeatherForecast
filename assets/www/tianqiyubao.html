@@ -86,12 +86,15 @@
                  error: function(){
                  }         
               });
-			});
+				var glable_weaDesc48;
+				var glable_ming_weaDesc;
 				$.ajax({
                  type:"GET",
+				 async: false,
                  url:globle_url+"/get_fcst_fine_city_by_stationnum",
                  data:{longitude:120.4,latitude:29.0},
 				 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+				 
                  success:function(data){
 					 if(data.status=="success")
 					 {
@@ -123,16 +126,91 @@
 						$("#main_hou_t").html(temp72L+"-"+temp72H+"℃");
 						$("#main_jin_t_icon").attr("src","img/weather/"+weaDesc24+".png");
 						$("#main_ming_t_icon").attr("src","img/weather/"+weaDesc48+".png");
+						glable_weaDesc48=weaDesc48;
 						$("#main_hou_t_icon").attr("src","img/weather/"+weaDesc72+".png");
-						
-						$("#main_jin_t_w").html(weaDesc24_+"转"+weaDesc48_);
-						$("#main_ming_t_w").html(weaDesc48_+"转"+weaDesc72_);
-						$("#main_hou_t_w").html(weaDesc72_+"转"+weaDesc96_);
+						if(weaDesc24_==weaDesc48_)
+						{
+							$("#main_jin_t_w").html(weaDesc24_);
+						}
+						else
+						{
+							$("#main_jin_t_w").html(weaDesc24_+"转"+weaDesc48_);
+						}
+						if(weaDesc48_==weaDesc72_)
+						{
+							$("#main_ming_t_w").html(weaDesc48_);
+							glable_ming_weaDesc=weaDesc48_;
+						}
+						else
+						{
+							$("#main_ming_t_w").html(weaDesc48_+"转"+weaDesc72_);
+							glable_ming_weaDesc=weaDesc48_+"转"+weaDesc72_;
+						}
+						if(weaDesc72_==weaDesc96_)
+						{
+							$("#main_hou_t_w").html(weaDesc72_);
+						}
+						else
+						{
+							$("#main_hou_t_w").html(weaDesc72_+"转"+weaDesc96_);
+						}
+						//$("#main_ming_t_w").html(weaDesc48_+"转"+weaDesc72_);
+						//$("#main_hou_t_w").html(weaDesc72_+"转"+weaDesc96_);
 					}
 				
 						
                  }
-              });
+			});
+              var jing_dian=[
+			  {stid:"K6078",name:""},
+			  {stid:"K6079",name:""},
+			  {stid:"K6080",name:""},
+			  {stid:"K6081",name:""},
+			  {stid:"K6082",name:""}
+			  ];
+				$.ajax({
+                 type:"GET",
+                 url:globle_url+"/get_town_info",
+                 data:{fh:24},
+				 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+                 success:function(data){
+					 if(data.status=="success")
+					 {
+						var res=data.result;
+						if(res)
+						{
+							var all_res={};
+							for(var k in res)
+							{
+								var r=res[k];
+								all_res[r.stid]=r;
+								
+							}
+							for(var kj=0;kj< jing_dian.length;kj++)
+							{
+								var res_town=all_res[jing_dian[kj].stid];
+								if(res_town)
+								{
+									var tH=parseFloat(res_town.tmax12/10).toFixed(0);
+									var tL=parseFloat(res_town.tmin12/10).toFixed(0);
+									var name=jing_dian[kj].name==null||jing_dian[kj].name.length<=0?res_town.stname:jing_dian[kj].name;
+									$("#jing_"+kj+"_name").html(name);
+									$("#jing_"+kj+"_t").html(tL+"到"+tH+"℃");
+									
+									if(glable_weaDesc48)
+										$("#jing_"+kj+"_icon").attr("src","img/weather/"+glable_weaDesc48+".png");
+									if(glable_ming_weaDesc)
+										$("#jing_"+kj+"_w").html(glable_ming_weaDesc);
+									
+								}
+								
+							}
+						}
+							
+					 }
+				}
+			});
+		});
         </script>
         <div data-role="header" id="headerBar">
             <div class="ui-grid-b">
@@ -184,57 +262,57 @@
                 <div class="lp-con">
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
-                            <span>第一景点</span>
+                            <span id="jing_1_name">第一景点</span>
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather/NA.png" />
-                            <span>15-23℃</span>
-                            <span>多云转小雨</span>
+                            <img id ="jing_1_icon" src="img/weather/NA.png" />
+                            <span id="jing_1_t">?-?℃</span>
+                            <span id="jing_1_w">多云转小雨</span>
+                        </div>
+                    </div>
+                    <div class="ui-grid-a">
+						<div class="ui-block-a">
+                            <span id="jing_2_name">第二景点</span>
+                            <span class="span2">明天</span>
+                        </div>
+                        <div class="ui-block-b">
+                            <img id ="jing_2_icon" src="img/weather/NA.png" />
+                            <span id="jing_2_t">?-?℃</span>
+                            <span id="jing_2_w">多云转小雨</span>
                         </div>
                     </div>
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
-                            <span>第二景点</span>
+                            <span id="jing_3_name">第三景点</span>
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather/NA.png" />
-                            <span>?-?℃</span>
-                            <span>多云转小雨</span>
+                            <img  id ="jing_3_icon" src="img/weather/NA.png" />
+                            <span id="jing_3_t">?-?℃</span>
+                            <span id="jing_3_w">多云转小雨</span>
                         </div>
                     </div>
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
-                            <span>第三景点</span>
+                            <span id="jing_4_name">第四景点</span>
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather/NA.png" />
-                            <span>?-?℃</span>
-                            <span>多云转小雨</span>
+                            <img  id ="jing_4_icon" src="img/weather/NA.png" />
+                            <span id="jing_4_t">?-?℃</span>
+                            <span id="jing_4_w">多云转小雨</span>
                         </div>
                     </div>
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
-                            <span>第四景点</span>
+                            <span id="jing_5_name">第五景点</span>
                             <span class="span2">明天</span>
                         </div>
                         <div class="ui-block-b">
-                            <img src="img/weather/NA.png" />
-                            <span>?-?℃</span>
-                            <span>多云转小雨</span>
-                        </div>
-                    </div>
-                    <div class="ui-grid-a">
-                        <div class="ui-block-a">
-                            <span>第五景点</span>
-                            <span class="span2">明天</span>
-                        </div>
-                        <div class="ui-block-b">
-                            <img src="img/weather/NA.png" />
-                            <span>?-?℃</span>
-                            <span>多云转小雨</span>
+                            <img  id ="jing_5_icon" src="img/weather/NA.png" />
+                            <span id="jing_5_t">?-?℃</span>
+                            <span id="jing_5_w">多云转小雨</span>
                         </div>
                     </div>
                 </div>

@@ -82,6 +82,7 @@ loadJsCssFileRelToLoadJs("jquery-1.11.2/jquery.js","js");
 loadJsCssFileRelToLoadJs("swiper/swiper.min.js", "js");
 loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.js", "js");
 loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
+loadJsCssFileRelToLoadJs("ajaxfileupload/ajaxfileupload.js","js");
 //store.js
  loadJsCssFileRelToLoadJs("store.js/store.js","js");
  loadJsCssFileRelToLoadJs("store.js/local_store.js","js");
