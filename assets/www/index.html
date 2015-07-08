@@ -74,8 +74,10 @@
 					 success:function(data){
 						if(data&&data.status=="success")
 						{
+							console.info(data);
 						    var value = document.getElementById("checkValue").innerHTML;
 							localhost_weather.user_info.name=name;
+							localhost_weather.user_info.user_id=data.result.id;
 							if (value == "true") {
 								localhost_weather.user_info.auto_login=true;
 							}

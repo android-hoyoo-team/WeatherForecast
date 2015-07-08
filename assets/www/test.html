@@ -24,7 +24,7 @@
 
             $("#returnpic").css('display','none');
             $("#returninfo").css('display','none');
-
+			console.info(Camera);
             navigator.camera.getPicture(onPhotoUrlSuccess, onUrlFail,
                     { quality: 50, allowEdit: true,
                         destinationType: Camera.DestinationType.FILE_URI,
@@ -108,7 +108,7 @@
             $("#urlinfo").css('display','none');
             $("#returnpic").attr("src",globle_url+"/"+ r.result[0]);
 
-            $("#returninfo").html("上传成功\n：反馈的信息:r.responseCode:"+r.status+":"+r.message);
+            $("#returninfo").html("上传成功\n：反馈的信息:r.responseCode:"+r.status+":");
         }
 
         function fail(error) {
