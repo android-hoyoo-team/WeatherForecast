@@ -6,10 +6,12 @@
     <title></title>
     <script src="js/load.js"></script>
     <script type="text/javascript">
+        loadJsCssFileRelToLoadJs("../css/easydialog/easydialog.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
         loadJsCssFileRelToLoadJs("../css/headerStyle.css", "css");
         loadJsCssFileRelToLoadJs("../css/register.css", "css");
+        loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
 		$(function () {
 			var localhost_weather= store.get('localhost_weather');
 			localhost_weather.user_info=localhost_weather.user_info||{};
@@ -26,23 +28,55 @@
 				var password2=$("#password2").val();
 				if(name==null||name.length<=0)
 				{
-					alert("用户名不能为空");
-					return;
+					//alert("用户名不能为空");
+				    //return;
+				    easyDialog.open({
+				        container: {
+				            content: '用户名不能为空'
+				        },
+				        autoClose: 2000,
+				        overlay: false
+				    });
+				    return;
 				}
 				if(password==null||password.length<=0)
 				{
-					alert("密码不能为空");
-					return;
+					//alert("密码不能为空");
+				    //return;
+				    easyDialog.open({
+				        container: {
+				            content: '密码不能为空'
+				        },
+				        autoClose: 2000,
+				        overlay: false
+				    });
+				    return;
 				}
 				if(password2==null||password2.length<=0)
 				{
-					alert("确认密码不能为空");
-					return;
+					//alert("确认密码不能为空");
+				    //return;
+				    easyDialog.open({
+				        container: {
+				            content: '请再次输入密码'
+				        },
+				        autoClose: 2000,
+				        overlay: false
+				    });
+				    return;
 				}
 				if(password2!=password)
 				{
-					alert("两次密码不一致");
-					return;
+					//alert("两次密码不一致");
+				    //return;
+				    easyDialog.open({
+				        container: {
+				            content: '两次密码不一致'
+				        },
+				        autoClose: 2000,
+				        overlay: false
+				    });
+				    return;
 				}
 				$.ajax({
 					 type:"GET",
@@ -64,7 +98,15 @@
 						}
 						else
 						{
-							alert(data.message);
+						    //alert(data.message);
+						    easyDialog.open({
+						        container: {
+						            content: data.message
+						        },
+						        autoClose: 2000,
+						        overlay: false
+						    });
+						    return;
 						}
 					 }
 				});

@@ -37,4 +37,24 @@
     background-repeat:no-repeat;
     background-size:100% 100%;
 }
-
+#easyDialogBox{
+    padding:0px !important;
+    margin:0 auto !important;
+    top:80% !important;
+    left:10% !important;
+    background-color:transparent !important;
+    width:80% !important;
+}
+#easyDialogWrapper{
+    border:0px !important;
+    padding:0px !important;
+    width:100%;
+    background-color:transparent !important;
+}
+.easyDialog_content{
+    background-color:rgba(128, 128, 128,0.7) !important;
+}
+.easyDialog_text{
+    padding:10px !important;
+    text-align:center;
+}

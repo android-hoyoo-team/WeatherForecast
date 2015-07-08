@@ -53,17 +53,17 @@
         <div data-role="content" id="secondaryMenuContent">
             <ul data-role="listview">
                 <li>
-                    <a href="#" class="ui-btn">
+                    <a href="#" class="ui-btn" id="tempBtn">
                         <img src="img/secondarymenu_con1.png" class="ui-li-icon" />温度监测
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="ui-btn">
+                    <a href="#" class="ui-btn" id="enviroBtn">
                         <img src="img/secondarymenu_con2.png" class="ui-li-icon">环境监测
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="ui-btn">
+                    <a href="#" class="ui-btn" id="ionBtn">
                         <img src="img/secondarymenu_con3.png" class="ui-li-icon">负氧离子
                     </a>
                 </li>
@@ -84,11 +84,43 @@
         </div>
         <script>
             $(function () {
+                var shikuangJson = {
+                    "temp": {
+                        "title": "温度监测",
+                        "url": "http://www.baidu.com"
+                    },
+                    "environ": {
+                        "title": "环境监测",
+                        "url": "http://www.taobao.com"
+                    },
+                    "ion": {
+                        "title": "负氧离子",
+                        "url": "http://www.sina.com.cn"
+                    }
+                };
+                var localhost_weather = store.get('localhost_weather');
+                localhost_weather.shikuang = {};
+                
                 $("#skjcBtn").click(function () {
                     location="secondarymenu.html";
                 });
                 $("#tqybBtn").click(function () {
                     location="tianqiyubao.html";
+                });
+                $("#tempBtn").click(function () {
+                    localhost_weather.shikuang = shikuangJson.temp;
+                    store.set("localhost_weather", localhost_weather);
+                    location = "shikuangdetail.html";
+                });
+                $("#enviroBtn").click(function () {
+                    localhost_weather.shikuang = shikuangJson.environ;
+                    store.set("localhost_weather", localhost_weather);
+                    location = "shikuangdetail.html";
+                });
+                $("#ionBtn").click(function () {
+                    localhost_weather.shikuang = shikuangJson.ion;
+                    store.set("localhost_weather", localhost_weather);
+                    location = "shikuangdetail.html";
                 });
             });
         </script>

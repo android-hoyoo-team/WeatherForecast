@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="js/load.js"></script>
+    <script type="text/javascript">        
+        loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
+        loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
+        $(function () {
+
+        })
+    </script>
+    
+</head>
+<body>
+    <div data-role="page" id="shikuangdetail">
+        <script type="text/javascript">
+            loadJsCssFileRelToLoadJs("../css/footStyle.css", "css");
+            loadJsCssFileRelToLoadJs("../css/headerStyle.css", "css");
+            loadJsCssFileRelToLoadJs("../css/shikuangdetail.css", "css");			
+        </script>
+        <div data-role="header" id="headerBar">
+            <div class="ui-grid-b">
+                <div class="ui-block-a">
+                    <a href="#" data-inline="true" data-rel="back">
+                        <img src="img/action_bar_button.png" ismap />
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <h4 id="shikuangdetail_title">实况监测</h4>
+                </div>
+            </div>
+        </div>
+        <div data-role="content" id="con" style="overflow:hidden;">   
+             <iframe  width="100%" height="100%" frameborder="0" id="iframe"></iframe>     
+        </div>
+        <div data-role="footer" id="footerMenu" data-fullscreen="true">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a id="tempBtn"><span style="line-height:38px;font-size:14px;">温度监测</span></a>
+                    </li>
+                    <li>
+                        <a id="inviroBtn"><span style="line-height: 38px; font-size: 14px;">环境监测</span></a>
+                    </li>
+                    <li>
+                        <a id="ionsBtn"><span style="line-height: 38px; font-size: 14px;">负氧离子</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var localhost_weather = store.get('localhost_weather');
+            $(function () {
+                //$("#skjcBtn").click(function () {
+                //    location="secondarymenu.html";
+                //});
+                //$("#tqybBtn").click(function () {
+                //    location="tianqiyubao.html";
+                //});  
+         
+            });
+            $(document).ready(function () {
+                var conHeight = ($(window).innerHeight() - $("#headerBar").height() - $("#footerMenu").height()) + "px";
+                $("#con").css({ height: conHeight, padding: "0px" });
+                $("#shikuangdetail_title").text(localhost_weather.shikuang.title);
+                $("#iframe").attr("src", localhost_weather.shikuang.url);
+                $("#tempBtn").click(function () {
+                    $("#iframe").attr("src","http://www.baidu.com");
+                });
+                $("#inviroBtn").click(function () {
+                    $("#iframe").attr("src", "http://www.taobao.com");
+                });
+                $("#ionBtn").click(function () {
+                    $("#iframe").attr("src", "http://www.sina.com.cn");
+                });
+            });
+
+        </script>
+    </div>
+</body>
+</html>

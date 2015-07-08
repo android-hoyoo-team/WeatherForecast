@@ -16,10 +16,12 @@
         //loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
        // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.js", "js");
        // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
-       // loadJsCssFileRelToLoadJs("weather_trend.js", "js");
+        // loadJsCssFileRelToLoadJs("weather_trend.js", "js");
+        loadJsCssFileRelToLoadJs("../css/easydialog/easydialog.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
         loadJsCssFileRelToLoadJs("../js/masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("../js/imagesloaded.js", "js");
+        loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
         $(function () {
 			var localhost_weather= store.get('localhost_weather');
 			localhost_weather.user_info=localhost_weather.user_info||{};
@@ -38,13 +40,29 @@
 				var password=$("#password").val();
 				if(name==null||name.length<=0)
 				{
-					alert("用户名不能为空");
-					return;
+					//alert("用户名不能为空");
+				    //return;
+				    easyDialog.open({
+				        container: {         
+				            content: '用户名不能为空'			            
+				        },
+				        autoClose: 2000,
+				        overlay: false
+				    });
+				    return;
 				}
 				if(password==null||password.length<=0)
 				{
-					alert("密码不能为空");
-					return;
+					//alert("密码不能为空");
+					//return;
+				    easyDialog.open({
+				        container: {
+				            content: '密码不能为空'
+				        },
+				        autoClose: 2000,
+				        overlay: false
+				    });
+				    return;
 				}
 				$.ajax({
 					 type:"GET",
@@ -112,9 +130,11 @@
                 <div class="user">
                     <input id="name" placeholder="用户名" />
                 </div>
+              
                 <div class="pwd">
                     <input id="password" type="password" placeholder="密码" />
                 </div>
+            
                 <div class="login-box">
                     <a data-role="button" id="loginBtn" >登录</a>
                 </div>
