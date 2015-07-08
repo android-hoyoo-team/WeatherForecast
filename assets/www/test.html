@@ -12,11 +12,6 @@
 		loadJsCssFileRelToLoadJs("../js/cordova.js", "js");
 	</script>
     <title>HTML-ZMS</title>
-    <style>
-        *{
-            color:black;
-        }
-    </style>
 </head>
 
 <body>
@@ -29,7 +24,7 @@
 
             $("#returnpic").css('display','none');
             $("#returninfo").css('display','none');
-
+			console.info(Camera);
             navigator.camera.getPicture(onPhotoUrlSuccess, onUrlFail,
                     { quality: 50, allowEdit: true,
                         destinationType: Camera.DestinationType.FILE_URI,
@@ -105,19 +100,15 @@
         }
 
         function win(r) {
-            alert(r.response);
-            //alert(r.response.result[0]);
-            var res=JSON.parse(r.response);
-           // var res = r.response;
+
             $("#returnpic").css('display','block');
             $("#returninfo").css('display','block');
 
             $("#urlimage").css('display','none');
-            $("#urlinfo").css('display', 'none');
-            alert(res.result[0]);
-            $("#returnpic").attr("src", globle_url + "/" + res.result[0]);
+            $("#urlinfo").css('display','none');
+            $("#returnpic").attr("src",globle_url+"/"+ r.result[0]);
 
-            $("#returninfo").html("上传成功\n：反馈的信息:r.responseCode:" + res.status + ":" + res.message);
+            $("#returninfo").html("上传成功\n：反馈的信息:r.responseCode:"+r.status+":");
         }
 
         function fail(error) {

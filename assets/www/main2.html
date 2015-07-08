@@ -19,15 +19,13 @@
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.js", "js");
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
         // loadJsCssFileRelToLoadJs("weather_trend.js", "js");
-        loadJsCssFileRelToLoadJs("../css/easydialog/easydialog.css", "css");
+
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
         loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
         loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
-        loadJsCssFileRelToLoadJs("../js/blockUI/blockUI.js", "js");
-        loadJsCssFileRelToLoadJs("../js/cordova.js", "js");
-        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
+		loadJsCssFileRelToLoadJs("../js/blockUI/blockUI.js", "js");        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
         $(function () {
 
         })
@@ -44,7 +42,7 @@
             loadJsCssFileRelToLoadJs("../css/swiper/swiper.min.css", "css");
             //loadJsCssFileRelToLoadJs("../js/masonry/dist/masonry.pkgd.min.js", "js");
             //loadJsCssFileRelToLoadJs("../js/imagesloaded.js", "js");
-
+			loadJsCssFileRelToLoadJs("../js/cordova.js", "js");
 
             //loadJsCssFileRelToLoadJs("../js/fusioncharts/fusioncharts.js", "js");
             //loadJsCssFileRelToLoadJs("../js/fusioncharts/fusioncharts.theme.fint.js", "js");
@@ -166,7 +164,7 @@
                                     <h3>未来三天天气预报</h3>
                                     <div class="title-divider"></div>
                                     
-                                    <div class="box6_con">
+                                    <div class="box6_con" style="height:300px;">
                                     
                                         
                                         <table class="box6-table" style="width:80%;text-align:center;margin:0 auto;">                                           
@@ -345,7 +343,7 @@
                                 </div>
                                 <div class="box5">
                                     <h3>PM2.5</h3>
-                                    <div class="box5_con" >
+                                    <div class="box5_con" style="height:100px;">
                                         <div class="title-divider"></div>
                                         <div class="ui-grid-b">
                                             <div class="ui-block-a" style="height:100px;">
@@ -1147,23 +1145,69 @@
                 //},1000);
             });
             var tag = 0;
-
+			var myCamera=null;
             document.getElementById("cameraBtn").addEventListener("click",function () {
-                //    easyDialog.open({
-                //        container: 'dialogCon',
-                //        fixed: false
-                //    });
-                //    if (tag == 0) {
-                //        tag++;
-                //        document.getElementById("overlay").addEventListener("click", closeDialog, false);
-                //        document.getElementById("photoBtn1").addEventListener("click", capturePhoto, false);
-                //        document.getElementById("photoBtn1").addEventListener("click", closeDialog, false);
-                //        document.getElementById("photoBtn2").addEventListener("click", function () { //getPhoto(pictureSource.PHOTOLIBRARY); 
-				//		}, false);
-                //        document.getElementById("photoBtn2").addEventListener("click", closeDialog, false);
-                //}               
-                
-                    
+                    easyDialog.open({
+                        container: 'dialogCon',
+                        fixed: false
+                    });
+                    if (tag == 0) {
+					myCamera=new MyCamera(
+					{
+						uploadUrl:globle_url+"/file_upload",
+						uploadParam:{},
+						uploadSuccess:function(uploadData){
+							
+							var localhost_weather= store.get('localhost_weather');
+							//localhost_weather.user_info.auto_login=false;
+							//alert("上传成功");
+							alert(JSON.stringify(uploadData));
+							if(uploadData.status=="success"&&uploadData.result.length>0)
+							{
+								var u_file= uploadData.result[0];
+								$.ajax({
+								 type:"GET",
+								 url:globle_url+"/save_user_images",
+								 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+								 data:{
+										comment:"没有任何评论",
+										url:u_file,
+										user_id:localhost_weather.user_info.user_id,
+										},
+								 success:function(data){
+									if(data.status=="success")
+									{
+										alert(data.result.url);
+									}else
+									{
+										alert(data.message);
+									}
+								 }
+								});
+							}
+							
+						},
+						uploadFailed:function(error){
+							alert("上传失败,请重新操作");
+						},
+						uploadCantExe:function(){
+							alert("上传被阻止");
+						},
+						onGetPictureSuccess:function(imageURI){
+							alert("获取图片:"+imageURI);
+							this.upload();
+						},
+						onGetPictureFail:function(message){
+							alert("获取图片失败:"+message);
+						}
+					});
+                        tag++;
+                        document.getElementById("overlay").addEventListener("click", closeDialog, false);
+                        document.getElementById("photoBtn1").addEventListener("click", function(){myCamera.capture();}, false);
+                        document.getElementById("photoBtn1").addEventListener("click", closeDialog, false);
+                        document.getElementById("photoBtn2").addEventListener("click",  function(){myCamera.getPicture();}, false);
+                        document.getElementById("photoBtn2").addEventListener("click", closeDialog, false);
+                    }                    
                 }, false);
 				function ajaxFileUpload() {
 
@@ -1179,20 +1223,38 @@
 						}
 					});
 				}
-        </script>-->
+       </script>-->
            
             <script>
 			var imgData = {
-                "data": [{ "src": "img/pubuliu/1.jpg" }, { "src": "img/pubuliu/2.jpg" }, { "src": "img/pubuliu/3.jpg" }, { "src": "img/pubuliu/4.jpg" }, { "src": "img/pubuliu/5.jpg" }, { "src": "img/pubuliu/6.jpg" },
-                 { "src": "img/pubuliu/7.jpg" }, { "src": "img/pubuliu/8.jpg" }, { "src": "img/pubuliu/9.jpg" }, { "src": "img/pubuliu/10.jpg" } ]
+                "data": []
             }
-            var pos={"imgPos":"5","slidePos":"-1"};
+            var pos={"imgPos":5,"slidePos":-1};
                 var _end = 0;
                 var _beginning = 0;
                 var swiperAll;
                 var swiperCon1;
                 var swiperCon2;
-                $(function () {                 
+                $(function () {       
+						$.ajax({
+							 type:"GET",
+							 url:globle_url+"/get_user_images",
+							 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+							 data:{page:1,size:12},
+							 success:function(data){
+								if(data.status=="success")
+								{
+									var res=data.result.result;
+									var d=[];
+									for(var i=0;i<res.length;i++)
+									{
+										d.push({src: globle_url+"/"+res[i].url });
+									}
+									console.info({data:d});
+									addToSwiper({data:d},pos,6,swiperCon1);
+								}
+							 }
+						});
                  //   setTimeout(function () {
                        swiperAll = new Swiper('.swiper-container-all', {
                             initialSlide: 1,
@@ -1251,8 +1313,30 @@
                             var  queryImg= {
                                 "data": [ { "src": "img/pubuliu/1.jpg" }, { "src": "img/pubuliu/2.jpg" }, { "src": "img/pubuliu/3.jpg" }, { "src": "img/pubuliu/4.jpg" }, { "src": "img/pubuliu/5.jpg" }, { "src": "img/pubuliu/6.jpg" }]
                             }
-                          
-                            addToSwiper(queryImg,pos,6,swiper);
+                          $.ajax({
+							 type:"GET",
+							 url:globle_url+"/get_user_images",
+							 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+							 data:{page:pos.slidePos+2,size:6},
+							 success:function(data){
+								if(data.status=="success")
+								{
+									
+									var res=data.result.result;
+									if(res.length>0)
+									{
+										var d=[];
+										for(var i=0;i<res.length;i++)
+										{
+											d.push({src: globle_url+"/"+res[i].url });
+										}
+										addToSwiper({data:d},pos,6,swiperCon1);
+									}
+									
+								}
+							 }
+						});
+                           // addToSwiper(queryImg,pos,6,swiper);
                         }
                     },
                     onInit: function (swiper) {
@@ -1269,7 +1353,8 @@
                         //    }
                         //    swiper.slides[i].innerHTML = slideHtml;
                         //}
-                        addToSwiper(imgData, pos, 6, swiper);
+						if(imgData&&imgData.data&&imgData.data.length>0)
+							addToSwiper(imgData, pos, 6, swiper);
                     }
                 });
 					//numPerPage:一页显示的图片数量
