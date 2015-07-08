@@ -68,12 +68,15 @@
                 $("#shikuangdetail_title").text(localhost_weather.shikuang.title);
                 $("#iframe").attr("src", localhost_weather.shikuang.url);
                 $("#tempBtn").click(function () {
+                    $("#shikuangdetail_title").text("温度监测");
                     $("#iframe").attr("src","http://www.baidu.com");
                 });
                 $("#inviroBtn").click(function () {
+                    $("#shikuangdetail_title").text("环境监测");
                     $("#iframe").attr("src", "http://www.taobao.com");
                 });
-                $("#ionBtn").click(function () {
+                $("#ionsBtn").click(function () {
+                    $("#shikuangdetail_title").text("负氧离子");
                     $("#iframe").attr("src", "http://www.sina.com.cn");
                 });
             });
