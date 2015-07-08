@@ -362,7 +362,16 @@
     background-color:#e7e7e7 !important;
    
 }
-
+#easyDialogBox{
+    width:50% !important;
+    margin:0px !important;
+    padding:0px !important;
+    top:30% !important;
+    left:25% !important;
+}
+#dialogCon .dialog-ul{
+    padding:0px !important;
+}
 .blockUI .ui-btn{
    padding:7px;
    margin:0px;

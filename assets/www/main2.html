@@ -19,13 +19,14 @@
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.js", "js");
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
         // loadJsCssFileRelToLoadJs("weather_trend.js", "js");
-
+        loadJsCssFileRelToLoadJs("../css/lightbox/lightbox.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
         loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
         loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
-		loadJsCssFileRelToLoadJs("../js/blockUI/blockUI.js", "js");        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
+        loadJsCssFileRelToLoadJs("../js/blockUI/blockUI.js", "js");        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
+        loadJsCssFileRelToLoadJs("../js/lightbox/lightbox-2.6.min.js", "js");
         $(function () {
 
         })
@@ -386,7 +387,7 @@
             <ul class="dialog-ul">
                 <li>
                     <input type="button" value="拍照" id="photoBtn1" style="background-color:gray;" />
-					<input id="image_src" type="file"  name="upfile" contentEditable="false" accept="image/*" style="width:448px; height: 22px;display:none;" onchange="ajaxFileUpload()"/></input>
+					<!--<input id="image_src" type="file"  name="upfile" contentEditable="false" accept="image/*" style="width:448px; height: 22px;display:none;" onchange="ajaxFileUpload()"/></input>-->
                     <input type="button" value="从照片中选择" onclick="image_src.click()" id="photoBtn2"  />
                 </li>
             </ul>
@@ -1029,7 +1030,7 @@
 
             });
         </script>
-        <script type="text/javascript">
+        <!--<script type="text/javascript">
             $(document).ready(function () {
 
                 $('#cameraBtn').click(function () {
@@ -1069,9 +1070,9 @@
                 });
 
             });
-        </script> 
+        </script>--> 
 
-        <!--<script>
+        <script>
             var pictureSource;   // picture source
             var destinationType; // sets the format of returned value
 
@@ -1223,7 +1224,7 @@
 						}
 					});
 				}
-       </script>-->
+       </script>
            
             <script>
 			var imgData = {
@@ -1369,7 +1370,7 @@
                         var missNum = numPerPage - 1 - pos.imgPos;
                         for (; i < missNum; i++) {
                             pos.imgPos++;//当前图片位置+1
-                            slideHtml+= "<div class='photo-wall-item'><div class='photo-box'><img src='" + imgData.data[i].src + "'/></div></div>";
+                            slideHtml += "<div class='photo-wall-item'><div class='photo-box'><a href='" + imgData.data[i].src + "' data-lightbox='images'><img src='" + imgData.data[i].src + "'/></a></div></div>";
                         }
                         swiper.slides[pos.slidePos].innerHTML += slideHtml;
                     }
@@ -1383,7 +1384,7 @@
                         var k = 0;
                         for (; i < imgData.data.length; i++) {
                             pos.imgPos = k;//更新pos
-                            slideHtml += "<div class='photo-wall-item'><div class='photo-box'><img src='" + imgData.data[i].src + "'/></div></div>";
+                            slideHtml += "<div class='photo-wall-item'><div class='photo-box'><a href='" + imgData.data[i].src + "' data-lightbox='images'><img src='" + imgData.data[i].src + "'/></a></div></div>";
                             k++;                          
                             if (k % 6 == 0) {
                                 i++;
