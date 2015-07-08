@@ -186,6 +186,7 @@
 								all_res[r.stid]=r;
 								
 							}
+							console.info(all_res);
 							for(var kj=0;kj< jing_dian.length;kj++)
 							{
 								var res_town=all_res[jing_dian[kj].stid];
@@ -194,13 +195,13 @@
 									var tH=parseFloat(res_town.tmax12/10).toFixed(0);
 									var tL=parseFloat(res_town.tmin12/10).toFixed(0);
 									var name=jing_dian[kj].name==null||jing_dian[kj].name.length<=0?res_town.stname:jing_dian[kj].name;
-									$("#jing_"+kj+"_name").html(name);
-									$("#jing_"+kj+"_t").html(tL+"到"+tH+"℃");
+									$("#jing_"+(kj+1)+"_name").html(name);
+									$("#jing_"+(kj+1)+"_t").html(tL+"到"+tH+"℃");
 									
 									if(glable_weaDesc48)
-										$("#jing_"+kj+"_icon").attr("src","img/weather/"+glable_weaDesc48+".png");
+										$("#jing_"+(kj+1)+"_icon").attr("src","img/weather/"+glable_weaDesc48+".png");
 									if(glable_ming_weaDesc)
-										$("#jing_"+kj+"_w").html(glable_ming_weaDesc);
+										$("#jing_"+(kj+1)+"_w").html(glable_ming_weaDesc);
 									
 								}
 								

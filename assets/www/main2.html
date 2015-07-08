@@ -19,14 +19,13 @@
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.js", "js");
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
         // loadJsCssFileRelToLoadJs("weather_trend.js", "js");
-        loadJsCssFileRelToLoadJs("../css/lightbox/lightbox.css", "css");
+
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
         loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
         loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
-        loadJsCssFileRelToLoadJs("../js/blockUI/blockUI.js", "js");        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
-        loadJsCssFileRelToLoadJs("../js/lightbox/lightbox-2.6.min.js", "js");
+		loadJsCssFileRelToLoadJs("../js/blockUI/blockUI.js", "js");        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
         $(function () {
 
         })
@@ -143,7 +142,7 @@
                                             <div class="main-box3-divider"></div>
                                             <div class="ui-grid-b  box3-current-detail">
                                                 <div class="ui-block-a">
-                                                    <p id="main_box3_wind1">----</p>
+                                                    <p>风速</p>
                                                     <p id="main_box3_temp1">相对湿度</p>
                                                     <p>负氧离子</p>
                                                     <p>PM2.5</p>
@@ -387,7 +386,7 @@
             <ul class="dialog-ul">
                 <li>
                     <input type="button" value="拍照" id="photoBtn1" style="background-color:gray;" />
-					<!--<input id="image_src" type="file"  name="upfile" contentEditable="false" accept="image/*" style="width:448px; height: 22px;display:none;" onchange="ajaxFileUpload()"/></input>-->
+					<input id="image_src" type="file"  name="upfile" contentEditable="false" accept="image/*" style="width:448px; height: 22px;display:none;" onchange="ajaxFileUpload()"/></input>
                     <input type="button" value="从照片中选择" onclick="image_src.click()" id="photoBtn2"  />
                 </li>
             </ul>
@@ -396,10 +395,10 @@
             <div style="background-color:#2c2c2c;"><p style="padding:0px;line-height:40px;margin:0px;">上传照片</p></div>
             <div class="ui-grid-a" style="height:50%;margin:20px;">
                 <div class="ui-block-a" style="width:40%;">
-                    <img src="img/pubuliu/2.jpg" style="width:80%;height:auto;border-radius:3px;border:1px solid white;"/>
+                    <img id="upload_success_image" src="img/pubuliu/2.jpg" style="width:80%;height:auto;border-radius:3px;border:1px solid white;"/>
                 </div>
                 <div class="ui-block-b">
-                    <textarea rows="5" style="color:black;">说点什么吧...</textarea>
+                    <textarea id="upload_success_comment" rows="5" style="color:black;">说点什么吧...</textarea>
                 </div>              
             </div>
             <div></div>
@@ -459,6 +458,7 @@
             else {
                 flag = 5;
             }
+			$("#main_box3_ion").html(value);
             for (var i = 0; i < array.length; i++) {
                 if (flag == i) {
                     array[flag].style.display = "block";
@@ -615,7 +615,8 @@
 						}
 						else
 							$("#main_box2_weather").html(weaDesc24_+"转"+weaDesc48_);
-						$("#main_box3_wind1").html(windD24_);
+							//alert(windD24_);
+						//$("#main_box3_wind1").html(windD24_);
 						
 						$("#main_box2_temp").html(temp24L+"-"+temp24H+"℃");
 						 var weatherJson = {
@@ -632,6 +633,7 @@
 							"windDir": [windD24_,windD48_,windD72_],
 							"windPower": [windS24_, windS48_, windS72_]
 						};
+						console.info(weatherJson);
 						initTable(weatherJson);
 					}
 				
@@ -1030,26 +1032,36 @@
 
             });
         </script>
-        <!--<script type="text/javascript">
+        <script type="text/javascript">
             $(document).ready(function () {
 
-                $('#cameraBtn').click(function () {
-                    $.blockUI({
-                        message: $('#uploadDialog'),
-                        css: {
-                            width: '100%',
-                            heigth: '100%',
-                            top: '0px',
-                            left: '0px',
-                            border: 'none',
-                            cursor: null,
-                           
-                        },
-                   
-                    });
-                });
+                
 
                 $('#yes').click(function () {
+						var localhost_weather= store.get('localhost_weather');
+						var u_file= $("#upload_success_image").attr("src_url");
+						var comment =$("#upload_success_comment").val();
+						if(comment==null||comment.trim()=="")
+							comment="没有任何评论";
+						$.ajax({
+								type:"GET",
+								url:globle_url+"/save_user_images",
+								dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+								data:{
+									comment:comment,
+									url:u_file,
+									user_id:localhost_weather.user_info.user_id,
+									},
+								success:function(data){
+									if(data.status=="success")
+									{
+										$.unblockUI();
+									}else
+									{
+										alert(data.message);
+									}
+								}
+						});
                     // update the block message
                     //$.blockUI({ message: "<h1>Remote call in progress...</h1>" });
 
@@ -1061,7 +1073,6 @@
                     //        $.unblockUI();
                     //    }
                     //});
-                    alert("111");
                 });
 
                 $('#no').click(function () {
@@ -1070,81 +1081,12 @@
                 });
 
             });
-        </script>--> 
+        </script> 
 
         <script>
-            var pictureSource;   // picture source
-            var destinationType; // sets the format of returned value
-
-            // Wait for device API libraries to load
-            //
-            document.addEventListener("deviceready", onDeviceReady, false);
-
-            // device APIs are available
-            //
-            function onDeviceReady() {
-                pictureSource = navigator.camera.PictureSourceType;
-                destinationType = navigator.camera.DestinationType;
-            }
-
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoDataSuccess(imageURI) {
-                alert(imageURI);
-            }
-
-            // Called when a photo is successfully retrieved
-            //
-            function onPhotoURISuccess(imageURI) {
-                alert(imageURI);
-            }
-
-            // A button will call this function
-            //
-            function capturePhoto() {
-                // Take picture using device camera and retrieve image as base64-encoded string
-                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
-                    quality: 50,
-                    destinationType: destinationType.FILE_URI
-                });
-            }
-
-            // A button will call this function
-            //
-            function getPhoto(source) {
-                // Retrieve image file location from specified source
-                navigator.camera.getPicture(onPhotoURISuccess, onFail, {
-                    quality: 50,
-                    destinationType: Camera.DestinationType.FILE_URI,
-                    sourceType: source
-                });
-            }
-
-            // Called if something bad happens.
-            //
-            function onFail(message) {
-                alert('Failed because: ' + message);
-            }
             function closeDialog() {
                 easyDialog.close();
             }
-            $(document).ready(function () {
-   
-                // init Masonry
-                //alert(hhhhh);
-                //setTimeout(function () {
-               
-					//var $grid = $('#main .photo-wall').masonry({
-					//	itemSelector: '#main .photo-wall-item',
-					//	isOriginTop: false,
-					//});
-					//// layout Isotope after each image loads
-					//$grid.imagesLoaded().progress(function () {
-					//	$grid.masonry();
-					//});
-				
-                //},1000);
-            });
             var tag = 0;
 			var myCamera=null;
             document.getElementById("cameraBtn").addEventListener("click",function () {
@@ -1159,32 +1101,27 @@
 						uploadParam:{},
 						uploadSuccess:function(uploadData){
 							
-							var localhost_weather= store.get('localhost_weather');
+							
 							//localhost_weather.user_info.auto_login=false;
 							//alert("上传成功");
-							alert(JSON.stringify(uploadData));
+							//alert(JSON.stringify(uploadData));
 							if(uploadData.status=="success"&&uploadData.result.length>0)
 							{
-								var u_file= uploadData.result[0];
-								$.ajax({
-								 type:"GET",
-								 url:globle_url+"/save_user_images",
-								 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
-								 data:{
-										comment:"没有任何评论",
-										url:u_file,
-										user_id:localhost_weather.user_info.user_id,
-										},
-								 success:function(data){
-									if(data.status=="success")
-									{
-										alert(data.result.url);
-									}else
-									{
-										alert(data.message);
-									}
-								 }
+								$("#upload_success_image").attr("src",globle_url+"/"+uploadData.result[0]);
+								$("#upload_success_image").attr("src_url",uploadData.result[0]);
+								 $.blockUI({
+									message: $('#uploadDialog'),
+									css: {
+										width: '100%',
+										heigth: '100%',
+										top: '0px',
+										left: '0px',
+										border: 'none',
+										cursor: null,
+									   
+									},
 								});
+								
 							}
 							
 						},
@@ -1195,7 +1132,7 @@
 							alert("上传被阻止");
 						},
 						onGetPictureSuccess:function(imageURI){
-							alert("获取图片:"+imageURI);
+							//alert("获取图片:"+imageURI);
 							this.upload();
 						},
 						onGetPictureFail:function(message){
@@ -1249,10 +1186,11 @@
 									var d=[];
 									for(var i=0;i<res.length;i++)
 									{
-										d.push({src: globle_url+"/"+res[i].url });
+										res[i].url =globle_url+"/"+res[i].url ;
 									}
-									console.info({data:d});
-									addToSwiper({data:d},pos,6,swiperCon1);
+									swiperAppend(res);
+									//console.info({data:d});
+									//addToSwiper({data:d},pos,6,swiperCon1);
 								}
 							 }
 						});
@@ -1309,34 +1247,64 @@
                     //paginationClickable: true,
                     //spaceBetween: 30,
                     scrollbar: '.swiper-scrollbar1',
+					onSlideChangeStart:function(swiper)
+					{
+						if (swiper.isBeginning) {
+							$.ajax({
+								 type:"GET",
+								 url:globle_url+"/get_user_images",
+								 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+								 data:{page:1,size:6},
+								 success:function(data){
+									if(data.status=="success")
+									{
+										
+										var res=data.result.result;
+										if(res.length>0)
+										{
+											var d=[];
+											for(var i=0;i<res.length;i++)
+											{
+												res[i].url =globle_url+"/"+res[i].url ;
+											}
+											swiperAppend(res);
+											//addToSwiper({data:d},pos,6,swiperCon1);
+										}
+										
+									}
+								 }
+							});
+						}
+					},
                     onSlideChangeEnd: function (swiper) {
                         if (swiper.isEnd) {
                             var  queryImg= {
                                 "data": [ { "src": "img/pubuliu/1.jpg" }, { "src": "img/pubuliu/2.jpg" }, { "src": "img/pubuliu/3.jpg" }, { "src": "img/pubuliu/4.jpg" }, { "src": "img/pubuliu/5.jpg" }, { "src": "img/pubuliu/6.jpg" }]
                             }
-                          $.ajax({
-							 type:"GET",
-							 url:globle_url+"/get_user_images",
-							 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
-							 data:{page:pos.slidePos+2,size:6},
-							 success:function(data){
-								if(data.status=="success")
-								{
-									
-									var res=data.result.result;
-									if(res.length>0)
+							  $.ajax({
+								 type:"GET",
+								 url:globle_url+"/get_user_images",
+								 dataType:'json',//"xml", "html", "script", "json", "jsonp", "text".
+								 data:{page:swiper.slides.length+1,size:6},
+								 success:function(data){
+									if(data.status=="success")
 									{
-										var d=[];
-										for(var i=0;i<res.length;i++)
+										
+										var res=data.result.result;
+										if(res.length>0)
 										{
-											d.push({src: globle_url+"/"+res[i].url });
+											var d=[];
+											for(var i=0;i<res.length;i++)
+											{
+												res[i].url =globle_url+"/"+res[i].url ;
+											}
+											swiperAppend(res);
+											//addToSwiper({data:d},pos,6,swiperCon1);
 										}
-										addToSwiper({data:d},pos,6,swiperCon1);
+										
 									}
-									
-								}
-							 }
-						});
+								 }
+							});
                            // addToSwiper(queryImg,pos,6,swiper);
                         }
                     },
@@ -1358,9 +1326,133 @@
 							addToSwiper(imgData, pos, 6, swiper);
                     }
                 });
+				var t_image_swiper={
+					allImageData:{},
+					slide:swiperCon1.slides.length,
+					useImageData:[],
+					slideSize:6,
+					swiper:swiperCon1,
+					slideHtmlIdPrefix:'slideHtmlIdPrefix_',
+					slideHtml:"<div id='{0}' class='photo-wall-item'><div class='photo-box'><img src='{1}'/></div></div>"
+				};
+				function swiperAppend(addData) {
+					if(addData&&addData.length>0)
+					{
+						//if(addTag=="+")
+						{
+							a:for(var k in addData)
+							{
+								
+								if(t_image_swiper.allImageData["t_user_img_"+addData[k].id])
+									continue;
+								t_image_swiper.allImageData["t_user_img_"+addData[k].id]=addData[k];
+								var id=addData[k].id;
+								//var frontI=0,back=t_image_swiper.useImageData.length;
+								if(t_image_swiper.useImageData.length>0)
+								{
+									var lastUseSlide=(t_image_swiper.useImageData.length/t_image_swiper.slideSize)+1;
+									for(var k1=0;k1<t_image_swiper.useImageData.length;k1++)
+									{
+										var img=t_image_swiper.useImageData[k1];
+										//if()
+										if(id>img.id)
+										{
+											t_image_swiper.useImageData.splice(k1,0,addData[k]);
+											_swiperAfter(addData[k],k1);
+											continue a;
+											//var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+addData[k].id,addData[k].url);
+											//$("#"+t_image_swiper.slideHtmlIdPrefix+img.id).before(add_);
+										}
+										else if(id<img.id&&k1==t_image_swiper.useImageData.length-1)//当小于最后一个时
+										{
+											t_image_swiper.useImageData.splice(t_image_swiper.useImageData.length,0,addData[k]);
+											_swiperAfter(addData[k],(t_image_swiper.useImageData.length-1));
+											//var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+addData[k].id,addData[k].url);
+											//$("#"+t_image_swiper.slideHtmlIdPrefix+img.id).after(add_);
+										}
+											
+									}
+								}
+								else
+								{
+									if(t_image_swiper.slide<=0)
+									{
+										t_image_swiper.swiper.appendSlide('<div id="global_swiper'+1+'" class="swiper-slide"></div>');
+									}
+									t_image_swiper.swiper.slides[0].innerHTML=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+addData[k].id,addData[k].url);
+									t_image_swiper.useImageData.push(addData[k]);
+									
+								}
+								
+								
+							}
+							
+						}
+					}
+					
+				}
+				function _swiperBefore(add,index)
+				{
+					var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url);
+					$("#"+t_image_swiper.slideHtmlIdPrefix+add.id).remove();
+					$("#"+t_image_swiper.slideHtmlIdPrefix+back.id).before(add_);
+				}
+				function _swiperAfter(add,index)
+				{
+					var useImageData= t_image_swiper.useImageData;
+					
+					var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url);
+					//console.info("xxxxx:",(index+1)%t_image_swiper.slideSize);
+					//console.info("yyyyy:",(parseInt(index/t_image_swiper.slideSize)+1)*t_image_swiper.slideSize+1);
+					if(index==useImageData.length-1&&(index+1)%t_image_swiper.slideSize==1){//在最后页上第一个位置 ，检查 slide是否够用不够的话添加 ，然后再 添加
+					//console.info("111");
+						if(t_image_swiper.slide<=0||t_image_swiper.swiper.slides.length<index/t_image_swiper.slideSize+1)
+						{
+							t_image_swiper.swiper.appendSlide('<div id="global_swiper'+(parseInt(index/t_image_swiper.slideSize)+1)+'" class="swiper-slide"></div>');
+						}
+						t_image_swiper.swiper.slides[parseInt(index/t_image_swiper.slideSize)].innerHTML=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url);
+						//t_image_swiper.useImageData.push(addData[k]);
+						//$("#"+t_image_swiper.slideHtmlIdPrefix+useImageData[index-1].id).after(add_);
+					}else if(index==useImageData.length-1&&(index+1)%t_image_swiper.slideSize!=1)//在 最后一页上的最后一个位置上，但不在当前页的第一个位置
+					{
+						$("#"+t_image_swiper.slideHtmlIdPrefix+useImageData[index-1].id).after(add_);
+						//var last=useImageData[(index/t_image_swiper.slideSize+1)*t_image_swiper.slideSize];
+						//useImageData[]
+					}
+					else
+						//if((index+1)%t_image_swiper.slideSize==0&&index>0)//不在最后页面&&不在最后页的第一个，先删除最后 然后添加当前，然后再 后面的页面添加 第一一个删除最后一个
+					{	
+						//alert(index);
+						//alert(index/t_image_swiper.slideSize);
+						//console.info((index/t_image_swiper.slideSize+1)*t_image_swiper.slideSize);
+						
+						var last_index=(parseInt(index/t_image_swiper.slideSize)+1)*t_image_swiper.slideSize;//获取当前页的最大序号
+						console.info(last_index);
+						var last=useImageData[last_index];
+						if((index+1)%t_image_swiper.slideSize!=1)//如果位置不在第一个位置上
+							$("#"+t_image_swiper.slideHtmlIdPrefix+useImageData[index-1].id).after(add_);//然后添加当前
+						else//如果在第一个位置上
+							$("#"+t_image_swiper.slideHtmlIdPrefix+useImageData[last_index-t_image_swiper.slideSize+1].id).before(add_)
+							console.info(last);
+						if(last)
+						{
+							$("#"+t_image_swiper.slideHtmlIdPrefix+last.id).remove();//先删除最后
+							_swiperAfter(last,last_index);
+						}
+						else
+						{
+							
+						}
+						//_swiperBefore(add,index);
+						
+						//$("#"+t_image_swiper.slideHtmlIdPrefix+font.id).after(add_);
+					}
+					
+				}
 					//numPerPage:一页显示的图片数量
                 //imgData:请求的图片
                 //pos:保存当前slider位置和图片位置	
+				
                         function addToSwiper(imgData,pos,numPerPage,swiper) {
                     //先从所有图片中取出上一页还可以容纳的数量的图片
                     //如果上页没有放满，则要补满
@@ -1370,7 +1462,7 @@
                         var missNum = numPerPage - 1 - pos.imgPos;
                         for (; i < missNum; i++) {
                             pos.imgPos++;//当前图片位置+1
-                            slideHtml += "<div class='photo-wall-item'><div class='photo-box'><a href='" + imgData.data[i].src + "' data-lightbox='images'><img src='" + imgData.data[i].src + "'/></a></div></div>";
+                            slideHtml+= "<div class='photo-wall-item'><div class='photo-box'><img src='" + imgData.data[i].src + "'/></div></div>";
                         }
                         swiper.slides[pos.slidePos].innerHTML += slideHtml;
                     }
@@ -1384,7 +1476,7 @@
                         var k = 0;
                         for (; i < imgData.data.length; i++) {
                             pos.imgPos = k;//更新pos
-                            slideHtml += "<div class='photo-wall-item'><div class='photo-box'><a href='" + imgData.data[i].src + "' data-lightbox='images'><img src='" + imgData.data[i].src + "'/></a></div></div>";
+                            slideHtml += "<div class='photo-wall-item'><div class='photo-box'><img src='" + imgData.data[i].src + "'/></div></div>";
                             k++;                          
                             if (k % 6 == 0) {
                                 i++;
