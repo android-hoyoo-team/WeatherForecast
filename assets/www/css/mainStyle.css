@@ -110,7 +110,11 @@
     max-height:100%;
     max-width:100%;
 }
-
+#main .box2 h1{
+    font-size:26px;
+    color:#007bdf;
+    font-family:STCaiyun;
+}
 #main .box2 .ui-grid-b img {
     width: 70px;
     height: auto;
@@ -125,6 +129,7 @@
 #main_box2_weather, #main_box2_temp {
     font-size: 14px;
     line-height:22px;
+    color:#020816;
 }
 #main .box3 .ui-grid-a .block1{
     width:33%;
