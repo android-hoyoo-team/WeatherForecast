@@ -376,8 +376,20 @@
    padding:7px;
    margin:0px;
    height:25px;
-   line-height:25px;
-   
+   line-height:25px; 
+}
+#easyDialogWrapper{
+    border:0px !important;
+    padding:0px !important;
+    width:100%;
+    background-color:transparent !important;
+}
+.easyDialog_content{
+    background-color:rgba(128, 128, 128,0.7) !important;
+}
+.easyDialog_text{
+    padding:10px !important;
+    text-align:center;
 }
 
 /*.main-box4-divider {

@@ -19,14 +19,15 @@
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.js", "js");
         // loadJsCssFileRelToLoadJs("fusioncharts/fusioncharts.theme.fint.js", "js");
         // loadJsCssFileRelToLoadJs("weather_trend.js", "js");
-
+        loadJsCssFileRelToLoadJs("../css/lightbox/lightbox.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css", "css");
         loadJsCssFileRelToLoadJs("jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js", "js");
         loadJsCssFileRelToLoadJs("masonry/dist/masonry.pkgd.min.js", "js");
         loadJsCssFileRelToLoadJs("imagesloaded.js", "js");
         loadJsCssFileRelToLoadJs("../js/easydialog/easydialog.min.js", "js");
 		loadJsCssFileRelToLoadJs("../js/blockUI/blockUI.js", "js");        //loadJsCssFileRelToLoadJs("js/swiper/swiper.min.js");
-        $(function () {
+		loadJsCssFileRelToLoadJs("../js/lightbox/lightbox-2.6.min.js", "js");
+		$(function () {
 
         })
     </script>
@@ -164,7 +165,7 @@
                                     <h3>未来三天天气预报</h3>
                                     <div class="title-divider"></div>
                                     
-                                    <div class="box6_con" style="height:300px;">
+                                    <div class="box6_con" style="height:280px;">
                                     
                                         
                                         <table class="box6-table" style="width:80%;text-align:center;margin:0 auto;">                                           
@@ -343,12 +344,12 @@
                                 </div>
                                 <div class="box5">
                                     <h3>PM2.5</h3>
-                                    <div class="box5_con" style="height:100px;">
+                                    <div class="box5_con">
                                         <div class="title-divider"></div>
                                         <div class="ui-grid-b">
                                             <div class="ui-block-a" style="height:100px;">
 
-                                                <div id="chartContainer2"></div>
+                                                <div id="chartContainer2" ></div>
                                             </div>
                                             <div class="ui-block-c">
 
@@ -957,7 +958,7 @@
                                 "showLegend": "0",
                                 "majorTMColor": "#B1E253",
                                 //"minortmnumber": "1",
-                                "majortmnumber": "20",
+                                "majortmnumber": "10",
                                 "majorTMThickness": "1",
                                 "showLimits": "1",
                                 "showTickValues": "1",
@@ -1036,8 +1037,13 @@
             $(document).ready(function () {
 
                 
-
+                var yes_tag = false;
                 $('#yes').click(function () {
+                        if (yes_tag)
+                        {
+                            return;
+                        }
+                        yes_tag = true;
 						var localhost_weather= store.get('localhost_weather');
 						var u_file= $("#upload_success_image").attr("src_url");
 						var comment =$("#upload_success_comment").val();
@@ -1052,7 +1058,8 @@
 									url:u_file,
 									user_id:localhost_weather.user_info.user_id,
 									},
-								success:function(data){
+								success: function (data) {
+								    yes_tag = false;
 									if(data.status=="success")
 									{
 										$.unblockUI();
@@ -1060,6 +1067,10 @@
 									{
 										alert(data.message);
 									}
+								},
+								error: function ()
+								{
+								    yes_tag = false;
 								}
 						});
                     // update the block message
@@ -1126,17 +1137,38 @@
 							
 						},
 						uploadFailed:function(error){
-							alert("上传失败,请重新操作");
+						    //alert("上传失败,请重新操作");
+						    easyDialog.open({
+						        container: {
+						            content: '上传失败,请重新操作'
+						        },
+						        autoClose: 2000,
+						        overlay: false
+						    });
 						},
 						uploadCantExe:function(){
-							alert("上传被阻止");
+						    //alert("上传被阻止");
+						    easyDialog.open({
+						        container: {
+						            content: '上传被阻止'
+						        },
+						        autoClose: 2000,
+						        overlay: false
+						    });
 						},
 						onGetPictureSuccess:function(imageURI){
 							//alert("获取图片:"+imageURI);
 							this.upload();
 						},
 						onGetPictureFail:function(message){
-							alert("获取图片失败:"+message);
+						    //alert("获取图片失败:"+message);
+						    easyDialog.open({
+						        container: {
+						            content: '获取图片失败'+message
+						        },
+						        autoClose: 2000,
+						        overlay: false
+						    });
 						}
 					});
                         tag++;
@@ -1333,7 +1365,7 @@
 					slideSize:6,
 					swiper:swiperCon1,
 					slideHtmlIdPrefix:'slideHtmlIdPrefix_',
-					slideHtml:"<div id='{0}' class='photo-wall-item'><div class='photo-box'><img src='{1}'/></div></div>"
+					slideHtml:"<div id='{0}' class='photo-wall-item'><div class='photo-box'><a href='{1}' data-lightbox='images'><img src='{2}'/></a></div></div>"
 				};
 				function swiperAppend(addData) {
 					if(addData&&addData.length>0)
@@ -1379,7 +1411,7 @@
 									{
 										t_image_swiper.swiper.appendSlide('<div id="global_swiper'+1+'" class="swiper-slide"></div>');
 									}
-									t_image_swiper.swiper.slides[0].innerHTML=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+addData[k].id,addData[k].url);
+									t_image_swiper.swiper.slides[0].innerHTML = Util.formatString(t_image_swiper.slideHtml, t_image_swiper.slideHtmlIdPrefix + addData[k].id, addData[k].url, addData[k].url);
 									t_image_swiper.useImageData.push(addData[k]);
 									
 								}
@@ -1393,7 +1425,7 @@
 				}
 				function _swiperBefore(add,index)
 				{
-					var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url);
+					var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url,add.url);
 					$("#"+t_image_swiper.slideHtmlIdPrefix+add.id).remove();
 					$("#"+t_image_swiper.slideHtmlIdPrefix+back.id).before(add_);
 				}
@@ -1401,7 +1433,7 @@
 				{
 					var useImageData= t_image_swiper.useImageData;
 					
-					var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url);
+					var add_=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url,add.url);
 					//console.info("xxxxx:",(index+1)%t_image_swiper.slideSize);
 					//console.info("yyyyy:",(parseInt(index/t_image_swiper.slideSize)+1)*t_image_swiper.slideSize+1);
 					if(index==useImageData.length-1&&(index+1)%t_image_swiper.slideSize==1){//在最后页上第一个位置 ，检查 slide是否够用不够的话添加 ，然后再 添加
@@ -1410,7 +1442,7 @@
 						{
 							t_image_swiper.swiper.appendSlide('<div id="global_swiper'+(parseInt(index/t_image_swiper.slideSize)+1)+'" class="swiper-slide"></div>');
 						}
-						t_image_swiper.swiper.slides[parseInt(index/t_image_swiper.slideSize)].innerHTML=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url);
+						t_image_swiper.swiper.slides[parseInt(index/t_image_swiper.slideSize)].innerHTML=Util.formatString(t_image_swiper.slideHtml,t_image_swiper.slideHtmlIdPrefix+add.id,add.url,add.url);
 						//t_image_swiper.useImageData.push(addData[k]);
 						//$("#"+t_image_swiper.slideHtmlIdPrefix+useImageData[index-1].id).after(add_);
 					}else if(index==useImageData.length-1&&(index+1)%t_image_swiper.slideSize!=1)//在 最后一页上的最后一个位置上，但不在当前页的第一个位置

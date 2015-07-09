@@ -89,4 +89,4 @@ loadJsCssFileRelToLoadJs("ajaxfileupload/ajaxfileupload.js","js");
  loadJsCssFileRelToLoadJs("store.js/local_store.js","js");
  //loadJsCssFileRelToLoadJs("../js/cordova.js", "js");
 //var globle_url="http://203.88.169.13:8081";
-var globle_url="http://10.41.87.82:9990";
+var globle_url="http://220.191.230.13:8080";
